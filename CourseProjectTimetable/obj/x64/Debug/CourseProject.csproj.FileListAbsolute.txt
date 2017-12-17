@@ -1,0 +1,14 @@
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\MainWindow.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\AudienceView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\FacultyView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\GroupsView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\PulpitView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\SpecialityView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\SubjectsView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\TeachersView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\View\TimetableView.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\App.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\CourseProjectTimetable_Content.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\CourseProjectTimetable_MarkupCompile.cache
+C:\Users\admin\Desktop\CourseProjectTimetable\CourseProjectTimetable\obj\x64\Debug\CourseProjectTimetable_MarkupCompile.lref

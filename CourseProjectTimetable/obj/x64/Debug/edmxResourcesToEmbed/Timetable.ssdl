@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище TimetableCourseProjectModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Audience">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="ShortName" />
+    </Key>
+    <Property Name="ShortName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SpecialityCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Course" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PairsNumber">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Start" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="End" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PairTypes">
+    <Key>
+      <PropertyRef Name="ShortName" />
+    </Key>
+    <Property Name="ShortName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pulpits">
+    <Key>
+      <PropertyRef Name="ShortName" />
+    </Key>
+    <Property Name="ShortName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ShortFacultyName" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Specialities">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ShortFacultyName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="ShortName" />
+    </Key>
+    <Property Name="ShortName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ShortPulpitName" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DayNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="PairNumber" Type="int" Nullable="false" />
+    <Property Name="WeekNumber" Type="nvarchar" MaxLength="2" />
+    <Property Name="GroupId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Subgroup" Type="nvarchar" MaxLength="2" />
+    <Property Name="ShortSubjectName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="AudienceNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TeacherId" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ShortPairtypeName" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Groups_Specialities">
+    <End Role="Specialities" Type="Self.Specialities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialities">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="Groups">
+        <PropertyRef Name="SpecialityCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Specialities_Faculties">
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Specialities" Type="Self.Specialities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="ShortName" />
+      </Principal>
+      <Dependent Role="Specialities">
+        <PropertyRef Name="ShortFacultyName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teachers_Pulpits">
+    <End Role="Pulpits" Type="Self.Pulpits" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pulpits">
+        <PropertyRef Name="ShortName" />
+      </Principal>
+      <Dependent Role="Teachers">
+        <PropertyRef Name="ShortPulpitName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_Audience">
+    <End Role="Audience" Type="Self.Audience" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Audience">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="AudienceNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_Groups">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_PairsNumber">
+    <End Role="PairsNumber" Type="Self.PairsNumber" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PairsNumber">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="PairNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_PairTypes">
+    <End Role="PairTypes" Type="Self.PairTypes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PairTypes">
+        <PropertyRef Name="ShortName" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="ShortPairtypeName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_Subjects">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ShortName" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="ShortSubjectName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_Teachers">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище TimetableCourseProjectModelContainer">
+    <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PairsNumber" EntityType="Self.PairsNumber" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PairTypes" EntityType="Self.PairTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pulpits" EntityType="Self.Pulpits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Specialities" EntityType="Self.Specialities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Timetable" EntityType="Self.Timetable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Groups_Specialities" Association="Self.FK_Groups_Specialities">
+      <End Role="Specialities" EntitySet="Specialities" />
+      <End Role="Groups" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Specialities_Faculties" Association="Self.FK_Specialities_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Specialities" EntitySet="Specialities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teachers_Pulpits" Association="Self.FK_Teachers_Pulpits">
+      <End Role="Pulpits" EntitySet="Pulpits" />
+      <End Role="Teachers" EntitySet="Teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_Audience" Association="Self.FK_Timetable_Audience">
+      <End Role="Audience" EntitySet="Audience" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_Groups" Association="Self.FK_Timetable_Groups">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_PairsNumber" Association="Self.FK_Timetable_PairsNumber">
+      <End Role="PairsNumber" EntitySet="PairsNumber" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_PairTypes" Association="Self.FK_Timetable_PairTypes">
+      <End Role="PairTypes" EntitySet="PairTypes" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_Subjects" Association="Self.FK_Timetable_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_Teachers" Association="Self.FK_Timetable_Teachers">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

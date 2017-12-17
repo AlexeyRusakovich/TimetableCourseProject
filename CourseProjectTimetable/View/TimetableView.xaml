@@ -1,0 +1,376 @@
+﻿<Page x:Class="CourseProjectTimetable.View.TimetableView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseProjectTimetable.View"
+      xmlns:vm="clr-namespace:CourseProjectTimetable.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="TimetableView">
+    <Page.DataContext>
+        <vm:TimetableViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Button Style="{StaticResource MetroButton}" Command="{Binding Filter}" Panel.ZIndex="5"  Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="270,0">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/refresh.png"/>
+            </Button.Background>
+        </Button>
+        <DockPanel>
+            <TabControl Width="300" Background="White">
+
+                <TabItem>
+                    <TabItem.Header>
+                        <Image Source="/Resources/add.png" Width="25"/>
+                    </TabItem.Header>
+                    <ScrollViewer>
+                        <StackPanel Margin="5">
+
+
+                            <Label Content="День недели" 
+                                   FontFamily="Segoe UI LIght"
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_день_недели_добавление"
+                                  ItemsSource="{Binding DayNumber, Source={StaticResource MainViewModel}}"
+                                  Text="{Binding AddDayNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_день_недели_добавление}"/>
+
+
+                            <Label Content="Номер пары" 
+                                FontFamily="Segoe UI LIght" 
+                                FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}"   x:Name="Расписание_номер_пары_добавление"
+                                        ItemsSource="{Binding PairNumber, Source={StaticResource MainViewModel}}"
+                                        DisplayMemberPath="Number"
+                                        Text="{Binding AddPairNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_номер_пары_добавление}"/>
+
+                            <Label  Content="Номер недели" FontFamily="Segoe UI LIght" FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_номер_недели_добавление"
+                                      ItemsSource="{Binding WeekNumber, Source={StaticResource MainViewModel}}"
+                                      Text="{Binding AddWeekNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_номер_недели_добавление}"/>
+
+
+                            <Label Content="Название предмета" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_предмет_добавление"
+                                  ItemsSource="{Binding Subjects, Source={StaticResource MainViewModel}}"
+                                  DisplayMemberPath="ShortName"
+                                 Text="{Binding AddShortSubjectName, ValidatesOnDataErrors=True}" />
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_предмет_добавление}"/>
+
+
+                            <Label Content="Группа" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_группа_добавление"
+                                  ItemsSource="{Binding Groups, Source={StaticResource MainViewModel}}"
+                                  DisplayMemberPath="Id"
+                                 Text="{Binding AddGroupId, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_группа_добавление}"/>
+
+                            <Label Content="Подгруппа" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_подгруппа_добавление"
+                                  ItemsSource="{Binding Subgroup, Source={StaticResource MainViewModel}}"
+                                 Text="{Binding AddSubgroup, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_подгруппа_добавление}"/>
+
+
+                            <Label Content="Аудитория" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_аудитория_добавление"
+                                  ItemsSource="{Binding AudienceNumber, Source={StaticResource MainViewModel}}"
+                                  DisplayMemberPath="Number"
+                                 Text="{Binding AddAudienceNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_аудитория_добавление}"/>
+
+
+                            <Label Content="Преподаватель" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_преподаватель_добавление"
+                                  ItemsSource="{Binding TeacherId, Source={StaticResource MainViewModel}}"
+                                  DisplayMemberPath="Id"
+                                  Text="{Binding AddTeacherId, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_преподаватель_добавление}"/>
+
+
+                            <Label Content="Тип занятия" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_тип_занятия_добавление" 
+                                  ItemsSource="{Binding ShortPairtypeName, Source={StaticResource MainViewModel}}"
+                                  DisplayMemberPath="ShortName"
+                                  Text="{Binding AddShortPairtypeName, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_тип_занятия_добавление}"/>
+
+
+                            <!-- КНОПКА ДОБАВЛЕНИЯ -->
+                            <Button Style="{StaticResource MenuButtonStyle}" 
+                                Template="{StaticResource MenuButtonTemplate}" 
+                                Command="{Binding TimetableAdd}"
+                                Content="Добавить"
+                                Width="200"
+                                HorizontalAlignment="Center"
+                                Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+
+                <TabItem>
+                    <TabItem.Header>
+                        <Image Source="/Resources/edit.png" Width="25"/>
+                    </TabItem.Header>
+                    <ScrollViewer>
+                        <StackPanel Margin="5">
+
+
+                            <Label Content="День недели" 
+                                   FontFamily="Segoe UI LIght"
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_день_недели_изменение"
+                                  ItemsSource="{Binding DayNumber}"
+                                 Text="{Binding ChangeDayNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_день_недели_изменение}"/>
+
+
+                            <Label Content="Номер пары" 
+                                FontFamily="Segoe UI LIght" 
+                                FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_номер_пары_изменение"
+                                      ItemsSource="{Binding PairNumber}"
+                                      DisplayMemberPath="Number"
+                                    Text="{Binding ChangePairNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_номер_пары_изменение}"/>
+
+                            <Label  Content="Номер недели" FontFamily="Segoe UI LIght" FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_номер_недели_изменение"
+                                      ItemsSource="{Binding WeekNumber}"
+                                 Text="{Binding ChangeWeekNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_номер_недели_изменение}"/>
+
+
+                            <Label Content="Название предмета" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_предмет_изменение"
+                                  ItemsSource="{Binding Subjects}"
+                                  DisplayMemberPath="ShortName"
+                                 Text="{Binding ChangeShortSubjectName, ValidatesOnDataErrors=True}" />
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_предмет_изменение}"/>
+
+
+                            <Label Content="Группа" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_группа_изменение"
+                                  ItemsSource="{Binding Groups}"
+                                  DisplayMemberPath="Id"
+                                 Text="{Binding ChangeGroupId, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_группа_изменение}"/>
+
+                            <Label Content="Подгруппа" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" 
+                                      ItemsSource="{Binding Subgroup}"
+                                      x:Name="Расписание_подгруппа_изменение"
+                                 Text="{Binding ChangeSubgroup, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_подгруппа_изменение}"/>
+
+
+                            <Label Content="Аудитория" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_аудитория_изменение"
+                                  ItemsSource="{Binding AudienceNumber}"
+                                  DisplayMemberPath="Number"
+                                 Text="{Binding ChangeAudienceNumber, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_аудитория_изменение}"/>
+
+
+                            <Label Content="Преподаватель" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_преподаватель_изменение"
+                                  ItemsSource="{Binding TeacherId}"
+                                  DisplayMemberPath="Id"
+                                  Text="{Binding ChangeTeacherId, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_преподаватель_изменение}"/>
+
+
+                            <Label Content="Тип занятия" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_тип_занятия_изменение" 
+                                  ItemsSource="{Binding ShortPairtypeName}"
+                                  DisplayMemberPath="ShortName"
+                                  Text="{Binding ChangeShortPairtypeName, ValidatesOnDataErrors=True}"/>
+                            <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Расписание_тип_занятия_изменение}"/>
+
+                            <Button Style="{StaticResource MenuButtonStyle}" 
+                                    Template="{StaticResource MenuButtonTemplate}" 
+                                    Content="{Binding EditButtonContent}"
+                                    Command="{Binding TimetableChange}"
+                                    Width="200"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,6,0,0"/>
+
+                            <Button Style="{StaticResource MenuButtonStyle}" 
+                                    Template="{StaticResource MenuButtonTemplate}" 
+                                    Visibility="{Binding CancelVisibility}"
+                                    Command="{Binding TimetableCancel}"
+                                    Content="Отмена"
+                                    Width="200"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,6,0,0"/>
+
+                            <Button Style="{StaticResource MenuButtonStyle}" 
+                                    Template="{StaticResource MenuButtonTemplate}" 
+                                    Command="{Binding TimetableRemove}"
+                                    Content="Удалить"
+                                    Width="200"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,20,0,0"/>
+
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Image Source="/Resources/search.png" Width="25"/>
+                    </TabItem.Header>
+                    <StackPanel Margin="5">
+
+
+                        <Label Content="День недели" 
+                                   FontFamily="Segoe UI LIght"
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchDayNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                        <Label Content="Номер пары" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchPairNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                        <Label Content="Номер недели" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchWeekNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                        <Label Content="Название предмета" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchShortSubjectName, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                        <Label Content="Группа" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchGroupId, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                        <Label Content="Аудитория" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchAudienceNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                        <Label Content="Преподаватель" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchTeacherId, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                        <Label Content="Тип занятия" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding SearchShortPairtypeName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+
+            <DataGrid  AutoGenerateColumns="False" IsReadOnly="True" CurrentItem="{Binding CurrentDataGridItem, Mode=TwoWay}" ItemsSource="{Binding Timetable}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Предмет" Binding="{Binding ShortSubjectName}" Width="0.6*"/>
+                    <DataGridTextColumn Header="Аудитория" Binding="{Binding AudienceNumber}" Width="0.6*"/>
+                    <DataGridTextColumn Header="Группа" Binding="{Binding GroupId}" Width="0.6*"/>
+                    <DataGridTextColumn Header="Подгруппа" Binding="{Binding Subgroup}" Width="0.6*"/>
+                    <DataGridTextColumn Header="Преподаватель" Binding="{Binding TeacherId}" Width="*"/>
+                    <DataGridTextColumn Header="День недели" Binding="{Binding DayNumber}"  Width="0.7*"/>
+                    <DataGridTextColumn Header="Пара" Binding="{Binding PairNumber}" Width="0.5*" />
+                    <DataGridTextColumn Header="Тип занятия" Binding="{Binding ShortPairtypeName}"  Width="0.6*"/>
+                    <DataGridTextColumn Header="Номер недели" Binding="{Binding WeekNumber}" Width="*"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="0.3*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </DockPanel>
+    </Grid>
+</Page>

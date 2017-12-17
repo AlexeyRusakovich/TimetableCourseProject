@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище TimetableCourseProjectModelContainer" CdmEntityContainer="TimetableCourseProject">
+    <EntitySetMapping Name="Audience">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Audience">
+        <MappingFragment StoreEntitySet="Audience">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Faculties">
+        <MappingFragment StoreEntitySet="Faculties">
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Groups">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SpecialityCode" ColumnName="SpecialityCode" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PairsNumber">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.PairsNumber">
+        <MappingFragment StoreEntitySet="PairsNumber">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="End" ColumnName="End" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PairTypes">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.PairTypes">
+        <MappingFragment StoreEntitySet="PairTypes">
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pulpits">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Pulpits">
+        <MappingFragment StoreEntitySet="Pulpits">
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ShortFacultyName" ColumnName="ShortFacultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specialities">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Specialities">
+        <MappingFragment StoreEntitySet="Specialities">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ShortFacultyName" ColumnName="ShortFacultyName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Subjects">
+        <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Teachers">
+        <MappingFragment StoreEntitySet="Teachers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="ShortPulpitName" ColumnName="ShortPulpitName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Timetable">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.Timetable">
+        <MappingFragment StoreEntitySet="Timetable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DayNumber" ColumnName="DayNumber" />
+          <ScalarProperty Name="PairNumber" ColumnName="PairNumber" />
+          <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="Subgroup" ColumnName="Subgroup" />
+          <ScalarProperty Name="ShortSubjectName" ColumnName="ShortSubjectName" />
+          <ScalarProperty Name="AudienceNumber" ColumnName="AudienceNumber" />
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="ShortPairtypeName" ColumnName="ShortPairtypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

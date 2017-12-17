@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD02CD75-4245-448E-9DCE-39A3E36ADF66}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CourseProjectTimetable</RootNamespace>
+    <AssemblyName>CourseProjectTimetable</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Audience.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Faculties.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Groups.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AudienceModel.cs" />
+    <Compile Include="Models\FacultiesModel.cs" />
+    <Compile Include="Models\GroupsModel.cs" />
+    <Compile Include="Models\PulpitsModel.cs" />
+    <Compile Include="Models\SpecialityModel.cs" />
+    <Compile Include="Models\SubjectsModel.cs" />
+    <Compile Include="Models\TeachersModel.cs" />
+    <Compile Include="Models\TimetableModel.cs" />
+    <Compile Include="PairsNumber.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PairTypes.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pulpits.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Specialities.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subjects.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Teachers.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Timetable.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Timetable.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AudienceViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Command\Command.cs" />
+    <Compile Include="ViewModel\FacultiesViewModel.cs" />
+    <Compile Include="ViewModel\GroupsViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PulpitsViewModel.cs" />
+    <Compile Include="ViewModel\SpecialitiesViewModel.cs" />
+    <Compile Include="ViewModel\SubjectViewModel.cs" />
+    <Compile Include="ViewModel\TeachersViewModel.cs" />
+    <Compile Include="ViewModel\TimetableViewModel.cs" />
+    <Compile Include="View\AudienceView.xaml.cs">
+      <DependentUpon>AudienceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FacultyView.xaml.cs">
+      <DependentUpon>FacultyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GroupsView.xaml.cs">
+      <DependentUpon>GroupsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PulpitView.xaml.cs">
+      <DependentUpon>PulpitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SpecialityView.xaml.cs">
+      <DependentUpon>SpecialityView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubjectsView.xaml.cs">
+      <DependentUpon>SubjectsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeachersView.xaml.cs">
+      <DependentUpon>TeachersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimetableView.xaml.cs">
+      <DependentUpon>TimetableView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\AudienceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FacultyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GroupsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PulpitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SpecialityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubjectsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeachersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimetableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="Timetable.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Timetable.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Timetable.edmx.diagram">
+      <DependentUpon>Timetable.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\add.png" />
+    <Resource Include="Resources\audience.png" />
+    <Resource Include="Resources\database.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\faculty.png" />
+    <Resource Include="Resources\group.png" />
+    <Resource Include="Resources\Icon.png" />
+    <Resource Include="Resources\readonly.png" />
+    <Resource Include="Resources\refresh.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\settings.png" />
+    <Resource Include="Resources\speciality.png" />
+    <Resource Include="Resources\subjects.png" />
+    <Resource Include="Resources\teachers.png" />
+    <Resource Include="Resources\timetable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Timetable.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Timetable.Context.cs</LastGenOutput>
+      <DependentUpon>Timetable.edmx</DependentUpon>
+    </Content>
+    <Content Include="Timetable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Timetable.edmx</DependentUpon>
+      <LastGenOutput>Timetable1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

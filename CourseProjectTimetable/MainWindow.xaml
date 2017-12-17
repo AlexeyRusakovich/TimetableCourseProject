@@ -1,0 +1,233 @@
+﻿<Window x:Class="CourseProjectTimetable.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectTimetable"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="750" 
+        Width="1000" 
+        MinHeight="600"
+        MinWidth="800"
+        Icon="/Resources/Icon.png" 
+        BorderThickness="0" 
+        Visibility="Visible" 
+        WindowStyle="None" 
+        ResizeMode="NoResize">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <Button Template="{StaticResource AppHeadButtonTemplate}" 
+                HorizontalContentAlignment="Left" 
+                PreviewMouseLeftButtonDown="Header_MouseLeftButtonDown"
+                MouseDoubleClick="Header_MouseDoubleClick"
+                Grid.Row="0" Background="#FF4DBAB4"/>
+
+
+
+
+        <!-- Кнопка сворачивания приложения -->
+        <Button Width="30" 
+                HorizontalAlignment="Right" 
+                Margin="3,3,77,3"  
+                Template="{StaticResource MinWindowButton}"
+                Click="TurnApp_Click"/>
+
+        <!-- Кнопка восстановления окна приложения -->
+        <Button Width="30" 
+                HorizontalAlignment="Right"
+                Margin="3,3,40,3" 
+                Template="{StaticResource MinMaxWindowButton}"
+                Click="MaxNormalWindow_Click"/>
+
+        <!-- Кнопка закрытия приложения -->
+        <Button Width="30" 
+                HorizontalAlignment="Right" 
+                Template="{StaticResource CloseAppButton}"
+                Margin="3,3,3,3"
+                Click="AppClose_Click"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="1" Background="#FF4DBAB4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <StackPanel Grid.Column="0" Grid.Row="1">
+
+                    <Button Height="40"
+                            Style="{StaticResource MenuButtonStyle}" 
+                            Template="{StaticResource MenuButtonTemplate}" 
+                            Click="DatabaseButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/database.png"
+                                       Height="25"/>
+                            <TextBlock Text="База данных"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel x:Name="DatabaseTables" 
+                                Width="200" 
+                                Background="LightBlue" 
+                                HorizontalAlignment="Right" 
+                                Visibility="Collapsed">
+
+                        <Button Height="35"  
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="TimetableButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/timetable.png"
+                                       Height="20"/>
+                                <TextBlock Text="Расписание"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Height="35"
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="TeachersButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/teachers.png"
+                                       Height="20"/>
+                                <TextBlock Text="Преподаватели"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Height="35"  
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="PulpitButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/faculty.png"
+                                       Height="20"/>
+                                <TextBlock Text="Кафедры"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Height="35"  
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="SubjectsButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/subjects.png"
+                                       Height="20"/>
+                                <TextBlock Text="Предметы"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+
+                        <Button Height="35"  
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="GroupsButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/group.png"
+                                       Height="20"/>
+                                <TextBlock Text="Группы" 
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+
+                        <Button Height="35" 
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="AudienceButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/Audience.png"
+                                       Height="20"/>
+                                <TextBlock Text="Аудитории"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Height="35" 
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="FacultyButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/faculty.png"
+                                       Height="20"/>
+                                <TextBlock Text="Факультеты"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+
+                        <Button Height="35"  
+                                Style="{StaticResource MenuButtonChildStyle}" 
+                                Template="{StaticResource MenuButtonChildTemplate}"
+                                Click="SpecialityButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/speciality.png"
+                                       Height="20"/>
+                                <TextBlock Text="Специальности"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
+
+                    </StackPanel>
+
+
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="0">
+
+                    <Image HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Height="174"
+                           Width="182" 
+                           Source="/Resources/Icon.png" 
+                           OpacityMask="#FF4D91BB" />
+
+                    <TextBlock HorizontalAlignment="Center"
+                            Margin="8,10,4,0"
+                            VerticalAlignment="Bottom" 
+                            Height="31" 
+                            Width="178" 
+                            Background="#FF4DBAB4" 
+                            Foreground="#FFC3EDF5" 
+                            FontSize="33" FontFamily="Felix Titling" TextDecorations="{x:Null}"><Run Text="Time"/><Run Text="Table"/></TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <Frame x:Name="OutputView"
+                       NavigationUIVisibility="Hidden"
+                                  OpacityMask="White"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

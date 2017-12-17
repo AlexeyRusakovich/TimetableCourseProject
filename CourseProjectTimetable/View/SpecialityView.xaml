@@ -1,0 +1,265 @@
+﻿<Page x:Class="CourseProjectTimetable.View.SpecialityView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseProjectTimetable.View"
+      xmlns:vm="clr-namespace:CourseProjectTimetable.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="SpecialityView">
+
+    <Page.DataContext>
+        <vm:SpecialitiesViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Button Style="{StaticResource MetroButton}" Command="{Binding Filter}" Panel.ZIndex="5"  Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="270,0">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/refresh.png"/>
+            </Button.Background>
+        </Button>
+        <DockPanel>
+            <TabControl Width="300">
+
+                <TabItem>
+                    <TabItem.Header>
+                        <Image Source="/Resources/add.png" Width="25"/>
+                    </TabItem.Header>
+                    <StackPanel Margin="5">
+
+                        <TextBlock Text="ДОБАВЛЕНИЕ" 
+                                       HorizontalAlignment="Center"
+                                       FontFamily="Segoe UI Light"
+                                       FontSize="18"
+                                       Foreground="#00FFFF"/>
+
+
+                        <Label Content="Код специальности" 
+                                   FontFamily="Segoe UI LIght"
+                                   FontSize="15"/>
+                        <TextBox x:Name="Специальности_код_добавление"
+                                 Text="{Binding AddCode, ValidatesOnDataErrors=True}" />
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent,
+                               ElementName=Специальности_код_добавление}"/>
+
+
+                        <Label  Content="Факультет" 
+                                FontFamily="Segoe UI LIght" 
+                                FontSize="15"/>
+                        <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Специальности_факультет_добавление"
+                                  ItemsSource="{Binding Faculties, Source={StaticResource MainViewModel}}"
+                                  DisplayMemberPath="ShortName"
+                                  Text="{Binding AddShortFacultyName, ValidatesOnDataErrors=True}" />
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_факультет_добавление}"/>
+
+
+                        <Label  Content="Кратное название специальности" 
+                                FontFamily="Segoe UI LIght" 
+                                FontSize="15"/>
+                        <TextBox x:Name="Специальност_название_добавление"
+                                 Text="{Binding AddShortName, ValidatesOnDataErrors=True}" />
+
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальност_название_добавление}"/>
+
+
+                        <Label  Content="Полное название специальности" 
+                                FontFamily="Segoe UI LIght" 
+                                FontSize="15"/>
+                        <TextBox x:Name="Специальности_полное_название_добавление"
+                                 Text="{Binding AddFullName, ValidatesOnDataErrors=True}" />
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_полное_название_добавление}"/>
+
+
+                        <Label Content="Квалификация" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+
+                        <TextBox    x:Name="Специальности_квалификация_добавление"
+                                    Text="{Binding AddQualification, ValidatesOnDataErrors=True}" />
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_квалификация_добавление}"/>
+
+
+
+                        <!-- КНОПКА ДОБАВЛЕНИЯ -->
+                        <Button Style="{StaticResource MenuButtonStyle}" 
+                                    Template="{StaticResource MenuButtonTemplate}" 
+                                    Command="{Binding SpecialityAdd}"
+                                    Content="Добавить"
+                                    Width="200"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,6,0,0"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Image Source="/Resources/edit.png" Width="25"/>
+                    </TabItem.Header>
+                    <StackPanel Margin="5">
+
+                        <TextBlock Text="ИЗМЕНЕНИЕ"
+                                       FontFamily="Segoe UI Light"
+                                       FontSize="18"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Cyan"/>
+
+                        <WrapPanel>
+                            <Label Content="Код специальности" 
+                                   FontFamily="Segoe UI LIght"
+                                   FontSize="15"/>
+                            <Image Source="/Resources/readonly.png" Width="20" HorizontalAlignment="Right"/>
+                        </WrapPanel>
+                        <TextBox IsReadOnly="True"
+                                Text="{Binding ChangeCode, ValidatesOnDataErrors=True}"
+                                 x:Name="Специальности_код_изменение"/>
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_код_изменение}"/>
+
+
+                        <Label Content="Аббревиатура факультета" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <ComboBox Style="{StaticResource ComboBoxFlatStyle}"   ItemsSource="{Binding Faculties}"
+                                    Text="{Binding ChangeShortFacultyName, ValidatesOnDataErrors=True}"
+                                    DisplayMemberPath="ShortName"
+                                    x:Name="Специальности_факультет_изменение"/>
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_факультет_изменение}"/>
+
+
+                        <Label Content="Краткое название специальности" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding ChangeShortName, ValidatesOnDataErrors=True}"
+                                    x:Name="Специальности_название_изменение"/>
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_факультет_изменение}"/>
+
+
+
+                        <Label Content="Полное название спец." 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+                        <TextBox Text="{Binding ChangeFullName, ValidatesOnDataErrors=True}"
+                                    x:Name="Специальности_полное_название_изменение"/>
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_полное_название_изменение}"/>
+
+
+                        <Label Content="Квалификация" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+
+                        <TextBox Text="{Binding ChangeQualification, ValidatesOnDataErrors=True}"
+                                    x:Name="Специальности_квалификация_изменение"/>
+                        <Label FontWeight="Bold" 
+                               Foreground="Red" 
+                               Content="{Binding (Validation.Errors)[0].ErrorContent, 
+                               ElementName=Специальности_квалификация_изменение}"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" 
+                                    Template="{StaticResource MenuButtonTemplate}" 
+                                    Content="{Binding EditButtonContent}"
+                                    Command="{Binding SpecialityChange}"
+                                    Width="200"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,6,0,0"/>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" 
+                                    Template="{StaticResource MenuButtonTemplate}" 
+                                    Command="{Binding SpecialityCancel}"
+                                    Visibility="{Binding CancelVisibility}"
+                                    Content="Отмена"
+                                    Width="200"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,6,0,0"/>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" 
+                                    Template="{StaticResource MenuButtonTemplate}" 
+                                    Command="{Binding SpecialityRemove}"
+                                    Content="Удалить"
+                                    Width="200"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,20,0,0"/>
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Image Source="/Resources/search.png" Width="25"/>
+                    </TabItem.Header>
+                    <StackPanel Margin="5">
+
+                        <TextBlock Text="ПОИСК"
+                                   FontFamily="Segoe UI Light"
+                                   FontSize="18"
+                                   Foreground="Cyan"
+                                   HorizontalAlignment="Center"/>
+
+                        <Label Content="Код специальности" 
+                                   FontFamily="Segoe UI LIght"
+                                   FontSize="15"/>
+
+                        <TextBox Text="{Binding SearchCode, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="Аббревиатура факультета" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+
+                        <TextBox Text="{Binding SearchShortFacultyName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="Краткое название специальности" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+
+                        <TextBox Text="{Binding SearchShortName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="Полное название специальности" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+
+                        <TextBox Text="{Binding SearchFullName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="Квалификация" 
+                                   FontFamily="Segoe UI LIght" 
+                                   FontSize="15"/>
+
+                        <TextBox Text="{Binding SearchQualification, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </TabItem>
+
+            </TabControl>
+
+            <DataGrid ItemsSource="{Binding Specialities}" CurrentItem="{Binding CurrentDataGridItem, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Код специальности" Binding="{Binding Code}" Width="0.9*"/>
+                    <DataGridTextColumn Header="Факультет" Binding="{Binding ShortFacultyName}" Width="0.6*"/>
+                    <DataGridTextColumn Header="Краткое наименование" Binding="{Binding ShortName}" Width="1.1*"/>
+                    <DataGridTextColumn Header="Полное наименование" Binding="{Binding FullName}" Width="2.7*"/>
+                    <DataGridTextColumn Header="Квалификация" Binding="{Binding Qualification}" Width="1.1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</Page>
