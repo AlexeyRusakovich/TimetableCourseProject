@@ -21,14 +21,9 @@ namespace CourseProject.Models
         {
             if (!IsExist(teachers))
             {
-                context.Teachers.Add(teachers);
-
-                if (IsContextChanged())
-                {
-                    return "Объект успешно добавлен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!";
+                context.InsertTeachers(teachers.Id, teachers.Name, teachers.Surname, teachers.Patronymic, teachers.ShortPulpitName);
+                
+                return "Объект успешно добавлен!";
             }
             else
                 return "Данный объект уже существует!";
@@ -38,14 +33,10 @@ namespace CourseProject.Models
         {
             if (IsExist(changedTeacher))
             {
-                changedTeacher = ReturnTeacher(changedTeacher).First();
-                changedTeacher.ShortPulpitName = newTeacher.ShortPulpitName;
-                if (IsContextChanged())
-                {
-                    return "Объект успешно изменен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!";
+                context.UpdateTeachers(changedTeacher.Id, newTeacher.ShortPulpitName);
+
+                return "Объект успешно изменен!";
+                
             }
             else
                 return "Данный объект уже существует!";
@@ -57,11 +48,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(teachers))
                 {
-                    if (IsContextChanged())
-                    {
                         return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -103,9 +90,8 @@ namespace CourseProject.Models
                     null, MessageBoxButton.OKCancel, MessageBoxImage.Question))
             {
                 case MessageBoxResult.OK:
-                    foreach (var timetable in context.Timetable.Where(t => t.TeacherId.Equals(teachers.Id)))
-                        context.Timetable.Remove(timetable);
-                    return context.Teachers.Remove(ReturnTeacher(teachers).First()) != null;
+                    context.DeleteTeachers(teachers.Id);
+                    return true;
                 case MessageBoxResult.Cancel:
                     return false;
             }

@@ -20,6 +20,7 @@ namespace CourseProjectTimetable.ViewModel
         public SpecialitiesViewModel()
         {
             this.context = new TimetableCourseProject();
+            context.Specialities.Load();
             SpecialitiesDatabase = context.Specialities.Local;
             Specialities = new ObservableCollection<Specialities>(SpecialitiesDatabase);
             specialityModel = new SpecialityModel();
@@ -285,6 +286,9 @@ namespace CourseProjectTimetable.ViewModel
         #region Methods
         private void FilterSpecialities()
         {
+            TimetableCourseProject Context = new TimetableCourseProject();
+            SpecialitiesDatabase = new ObservableCollection<Specialities>(Context.Specialities.ToList());
+            context.Specialities.Load();
             if (Specialities != null)
             {
                 Specialities.Clear();

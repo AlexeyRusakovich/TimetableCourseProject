@@ -100,5 +100,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeleteAudience" FunctionName="Хранилище TimetableCourseProjectModel.DeleteAudience" />
+    <FunctionImportMapping FunctionImportName="DeleteFaculty" FunctionName="Хранилище TimetableCourseProjectModel.DeleteFaculty" />
+    <FunctionImportMapping FunctionImportName="DeleteGroup" FunctionName="Хранилище TimetableCourseProjectModel.DeleteGroup" />
+    <FunctionImportMapping FunctionImportName="DeletePulpit" FunctionName="Хранилище TimetableCourseProjectModel.DeletePulpit" />
+    <FunctionImportMapping FunctionImportName="DeleteSpeciality" FunctionName="Хранилище TimetableCourseProjectModel.DeleteSpeciality" />
+    <FunctionImportMapping FunctionImportName="DeleteSubjects" FunctionName="Хранилище TimetableCourseProjectModel.DeleteSubjects" />
+    <FunctionImportMapping FunctionImportName="DeleteTeachers" FunctionName="Хранилище TimetableCourseProjectModel.DeleteTeachers" />
+    <FunctionImportMapping FunctionImportName="DeleteTiemtable" FunctionName="Хранилище TimetableCourseProjectModel.DeleteTiemtable" />
+    <FunctionImportMapping FunctionImportName="InsertAudience" FunctionName="Хранилище TimetableCourseProjectModel.InsertAudience" />
+    <FunctionImportMapping FunctionImportName="InsertFaculties" FunctionName="Хранилище TimetableCourseProjectModel.InsertFaculties" />
+    <FunctionImportMapping FunctionImportName="InsertGroups" FunctionName="Хранилище TimetableCourseProjectModel.InsertGroups" />
+    <FunctionImportMapping FunctionImportName="InsertPulpit" FunctionName="Хранилище TimetableCourseProjectModel.InsertPulpit" />
+    <FunctionImportMapping FunctionImportName="InsertSpeciality" FunctionName="Хранилище TimetableCourseProjectModel.InsertSpeciality" />
+    <FunctionImportMapping FunctionImportName="InsertSubjects" FunctionName="Хранилище TimetableCourseProjectModel.InsertSubjects" />
+    <FunctionImportMapping FunctionImportName="InsertTeachers" FunctionName="Хранилище TimetableCourseProjectModel.InsertTeachers" />
+    <FunctionImportMapping FunctionImportName="InsertTimeTable" FunctionName="Хранилище TimetableCourseProjectModel.InsertTimeTable" />
+    <FunctionImportMapping FunctionImportName="UpdateAudience" FunctionName="Хранилище TimetableCourseProjectModel.UpdateAudience" />
+    <FunctionImportMapping FunctionImportName="UpdateFaculty" FunctionName="Хранилище TimetableCourseProjectModel.UpdateFaculty" />
+    <FunctionImportMapping FunctionImportName="UpdateGroup" FunctionName="Хранилище TimetableCourseProjectModel.UpdateGroup" />
+    <FunctionImportMapping FunctionImportName="UpdatePulpit" FunctionName="Хранилище TimetableCourseProjectModel.UpdatePulpit" />
+    <FunctionImportMapping FunctionImportName="UpdateSpeciality" FunctionName="Хранилище TimetableCourseProjectModel.UpdateSpeciality" />
+    <FunctionImportMapping FunctionImportName="UpdateSubjects" FunctionName="Хранилище TimetableCourseProjectModel.UpdateSubjects" />
+    <FunctionImportMapping FunctionImportName="UpdateTeachers" FunctionName="Хранилище TimetableCourseProjectModel.UpdateTeachers" />
+    <FunctionImportMapping FunctionImportName="UpdateTiemtable" FunctionName="Хранилище TimetableCourseProjectModel.UpdateTiemtable" />
   </EntityContainerMapping>
 </Mapping>

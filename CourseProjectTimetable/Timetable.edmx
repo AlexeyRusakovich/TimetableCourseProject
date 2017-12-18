@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище TimetableCourseProjectModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище TimetableCourseProjectModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Audience">
           <Key>
             <PropertyRef Name="Number" />
@@ -218,6 +218,123 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteAudience" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Number" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteFaculty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeletePulpit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteSpeciality" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteTeachers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteTiemtable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertAudience" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="number" Type="nvarchar" Mode="In" />
+          <Parameter Name="capacity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertFaculties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpecialityCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Course" Type="int" Mode="In" />
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="Count" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertPulpit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShortFacultyName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertSpeciality" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShortFacultyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Qualification" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertTeachers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Surname" Type="nvarchar" Mode="In" />
+          <Parameter Name="Patronymic" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShortPulpitName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertTimeTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DayNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="PairNumber" Type="int" Mode="In" />
+          <Parameter Name="WeekNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="GroupId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Subgroup" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShortSubjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AudienceNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="TeacherId" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShortPairtypeName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateAudience" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Number" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewCapacity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateFaculty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewFullName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewCount" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdatePulpit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewFullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewShortFacultyName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateSpeciality" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewShortFacultyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewFullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewQualification" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateSubjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewFullName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateTeachers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewShortPulpitName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateTiemtable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="NewDayNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPairNumber" Type="int" Mode="In" />
+          <Parameter Name="NewWeekNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewGroupId" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewSubgroup" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewShortSubjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewAudienceNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewTeacherId" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewShortPairtypeName" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="Хранилище TimetableCourseProjectModelContainer">
           <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
@@ -266,8 +383,7 @@
             <End Role="Timetable" EntitySet="Timetable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TimetableCourseProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -549,6 +665,123 @@
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="Timetable" EntitySet="Timetable" />
           </AssociationSet>
+          <FunctionImport Name="DeleteAudience" ReturnType="Collection(String)">
+            <Parameter Name="Number" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteFaculty" ReturnType="Collection(String)">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteGroup" ReturnType="Collection(String)">
+            <Parameter Name="Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePulpit" ReturnType="Collection(String)">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteSpeciality" ReturnType="Collection(String)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteSubjects" ReturnType="Collection(String)">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteTeachers" ReturnType="Collection(String)">
+            <Parameter Name="Id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteTiemtable" ReturnType="Collection(Int32)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertAudience">
+            <Parameter Name="number" Mode="In" Type="String" />
+            <Parameter Name="capacity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertFaculties">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertGroups">
+            <Parameter Name="Id" Mode="In" Type="String" />
+            <Parameter Name="SpecialityCode" Mode="In" Type="String" />
+            <Parameter Name="Course" Mode="In" Type="Int32" />
+            <Parameter Name="Number" Mode="In" Type="Int32" />
+            <Parameter Name="Count" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertPulpit">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="ShortFacultyName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertSpeciality">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="ShortFacultyName" Mode="In" Type="String" />
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="Qualification" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertSubjects">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertTeachers">
+            <Parameter Name="Id" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Surname" Mode="In" Type="String" />
+            <Parameter Name="Patronymic" Mode="In" Type="String" />
+            <Parameter Name="ShortPulpitName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertTimeTable">
+            <Parameter Name="DayNumber" Mode="In" Type="String" />
+            <Parameter Name="PairNumber" Mode="In" Type="Int32" />
+            <Parameter Name="WeekNumber" Mode="In" Type="String" />
+            <Parameter Name="GroupId" Mode="In" Type="String" />
+            <Parameter Name="Subgroup" Mode="In" Type="String" />
+            <Parameter Name="ShortSubjectName" Mode="In" Type="String" />
+            <Parameter Name="AudienceNumber" Mode="In" Type="String" />
+            <Parameter Name="TeacherId" Mode="In" Type="String" />
+            <Parameter Name="ShortPairtypeName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateAudience" ReturnType="Collection(String)">
+            <Parameter Name="Number" Mode="In" Type="String" />
+            <Parameter Name="NewCapacity" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateFaculty" ReturnType="Collection(String)">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+            <Parameter Name="NewFullName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateGroup" ReturnType="Collection(String)">
+            <Parameter Name="Id" Mode="In" Type="String" />
+            <Parameter Name="NewCount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePulpit" ReturnType="Collection(String)">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+            <Parameter Name="NewFullName" Mode="In" Type="String" />
+            <Parameter Name="NewShortFacultyName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateSpeciality" ReturnType="Collection(String)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="NewShortFacultyName" Mode="In" Type="String" />
+            <Parameter Name="NewShortName" Mode="In" Type="String" />
+            <Parameter Name="NewFullName" Mode="In" Type="String" />
+            <Parameter Name="NewQualification" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateSubjects" ReturnType="Collection(String)">
+            <Parameter Name="ShortName" Mode="In" Type="String" />
+            <Parameter Name="NewFullName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTeachers" ReturnType="Collection(String)">
+            <Parameter Name="Id" Mode="In" Type="String" />
+            <Parameter Name="NewShortPulpitName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTiemtable" ReturnType="Collection(Int32)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="NewDayNumber" Mode="In" Type="String" />
+            <Parameter Name="NewPairNumber" Mode="In" Type="Int32" />
+            <Parameter Name="NewWeekNumber" Mode="In" Type="String" />
+            <Parameter Name="NewGroupId" Mode="In" Type="String" />
+            <Parameter Name="NewSubgroup" Mode="In" Type="String" />
+            <Parameter Name="NewShortSubjectName" Mode="In" Type="String" />
+            <Parameter Name="NewAudienceNumber" Mode="In" Type="String" />
+            <Parameter Name="NewTeacherId" Mode="In" Type="String" />
+            <Parameter Name="NewShortPairtypeName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -655,6 +888,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteAudience" FunctionName="Хранилище TimetableCourseProjectModel.DeleteAudience" />
+          <FunctionImportMapping FunctionImportName="DeleteFaculty" FunctionName="Хранилище TimetableCourseProjectModel.DeleteFaculty" />
+          <FunctionImportMapping FunctionImportName="DeleteGroup" FunctionName="Хранилище TimetableCourseProjectModel.DeleteGroup" />
+          <FunctionImportMapping FunctionImportName="DeletePulpit" FunctionName="Хранилище TimetableCourseProjectModel.DeletePulpit" />
+          <FunctionImportMapping FunctionImportName="DeleteSpeciality" FunctionName="Хранилище TimetableCourseProjectModel.DeleteSpeciality" />
+          <FunctionImportMapping FunctionImportName="DeleteSubjects" FunctionName="Хранилище TimetableCourseProjectModel.DeleteSubjects" />
+          <FunctionImportMapping FunctionImportName="DeleteTeachers" FunctionName="Хранилище TimetableCourseProjectModel.DeleteTeachers" />
+          <FunctionImportMapping FunctionImportName="DeleteTiemtable" FunctionName="Хранилище TimetableCourseProjectModel.DeleteTiemtable" />
+          <FunctionImportMapping FunctionImportName="InsertAudience" FunctionName="Хранилище TimetableCourseProjectModel.InsertAudience" />
+          <FunctionImportMapping FunctionImportName="InsertFaculties" FunctionName="Хранилище TimetableCourseProjectModel.InsertFaculties" />
+          <FunctionImportMapping FunctionImportName="InsertGroups" FunctionName="Хранилище TimetableCourseProjectModel.InsertGroups" />
+          <FunctionImportMapping FunctionImportName="InsertPulpit" FunctionName="Хранилище TimetableCourseProjectModel.InsertPulpit" />
+          <FunctionImportMapping FunctionImportName="InsertSpeciality" FunctionName="Хранилище TimetableCourseProjectModel.InsertSpeciality" />
+          <FunctionImportMapping FunctionImportName="InsertSubjects" FunctionName="Хранилище TimetableCourseProjectModel.InsertSubjects" />
+          <FunctionImportMapping FunctionImportName="InsertTeachers" FunctionName="Хранилище TimetableCourseProjectModel.InsertTeachers" />
+          <FunctionImportMapping FunctionImportName="InsertTimeTable" FunctionName="Хранилище TimetableCourseProjectModel.InsertTimeTable" />
+          <FunctionImportMapping FunctionImportName="UpdateAudience" FunctionName="Хранилище TimetableCourseProjectModel.UpdateAudience" />
+          <FunctionImportMapping FunctionImportName="UpdateFaculty" FunctionName="Хранилище TimetableCourseProjectModel.UpdateFaculty" />
+          <FunctionImportMapping FunctionImportName="UpdateGroup" FunctionName="Хранилище TimetableCourseProjectModel.UpdateGroup" />
+          <FunctionImportMapping FunctionImportName="UpdatePulpit" FunctionName="Хранилище TimetableCourseProjectModel.UpdatePulpit" />
+          <FunctionImportMapping FunctionImportName="UpdateSpeciality" FunctionName="Хранилище TimetableCourseProjectModel.UpdateSpeciality" />
+          <FunctionImportMapping FunctionImportName="UpdateSubjects" FunctionName="Хранилище TimetableCourseProjectModel.UpdateSubjects" />
+          <FunctionImportMapping FunctionImportName="UpdateTeachers" FunctionName="Хранилище TimetableCourseProjectModel.UpdateTeachers" />
+          <FunctionImportMapping FunctionImportName="UpdateTiemtable" FunctionName="Хранилище TimetableCourseProjectModel.UpdateTiemtable" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -278,5 +278,122 @@
       <End Role="Teachers" EntitySet="Teachers" />
       <End Role="Timetable" EntitySet="Timetable" />
     </AssociationSet>
+    <FunctionImport Name="DeleteAudience" ReturnType="Collection(String)">
+      <Parameter Name="Number" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteFaculty" ReturnType="Collection(String)">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteGroup" ReturnType="Collection(String)">
+      <Parameter Name="Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeletePulpit" ReturnType="Collection(String)">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteSpeciality" ReturnType="Collection(String)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteSubjects" ReturnType="Collection(String)">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTeachers" ReturnType="Collection(String)">
+      <Parameter Name="Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteTiemtable" ReturnType="Collection(Int32)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertAudience">
+      <Parameter Name="number" Mode="In" Type="String" />
+      <Parameter Name="capacity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertFaculties">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+      <Parameter Name="FullName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertGroups">
+      <Parameter Name="Id" Mode="In" Type="String" />
+      <Parameter Name="SpecialityCode" Mode="In" Type="String" />
+      <Parameter Name="Course" Mode="In" Type="Int32" />
+      <Parameter Name="Number" Mode="In" Type="Int32" />
+      <Parameter Name="Count" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPulpit">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+      <Parameter Name="FullName" Mode="In" Type="String" />
+      <Parameter Name="ShortFacultyName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertSpeciality">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="ShortFacultyName" Mode="In" Type="String" />
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+      <Parameter Name="FullName" Mode="In" Type="String" />
+      <Parameter Name="Qualification" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertSubjects">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+      <Parameter Name="FullName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertTeachers">
+      <Parameter Name="Id" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Surname" Mode="In" Type="String" />
+      <Parameter Name="Patronymic" Mode="In" Type="String" />
+      <Parameter Name="ShortPulpitName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertTimeTable">
+      <Parameter Name="DayNumber" Mode="In" Type="String" />
+      <Parameter Name="PairNumber" Mode="In" Type="Int32" />
+      <Parameter Name="WeekNumber" Mode="In" Type="String" />
+      <Parameter Name="GroupId" Mode="In" Type="String" />
+      <Parameter Name="Subgroup" Mode="In" Type="String" />
+      <Parameter Name="ShortSubjectName" Mode="In" Type="String" />
+      <Parameter Name="AudienceNumber" Mode="In" Type="String" />
+      <Parameter Name="TeacherId" Mode="In" Type="String" />
+      <Parameter Name="ShortPairtypeName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateAudience" ReturnType="Collection(String)">
+      <Parameter Name="Number" Mode="In" Type="String" />
+      <Parameter Name="NewCapacity" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateFaculty" ReturnType="Collection(String)">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+      <Parameter Name="NewFullName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateGroup" ReturnType="Collection(String)">
+      <Parameter Name="Id" Mode="In" Type="String" />
+      <Parameter Name="NewCount" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdatePulpit" ReturnType="Collection(String)">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+      <Parameter Name="NewFullName" Mode="In" Type="String" />
+      <Parameter Name="NewShortFacultyName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateSpeciality" ReturnType="Collection(String)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="NewShortFacultyName" Mode="In" Type="String" />
+      <Parameter Name="NewShortName" Mode="In" Type="String" />
+      <Parameter Name="NewFullName" Mode="In" Type="String" />
+      <Parameter Name="NewQualification" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateSubjects" ReturnType="Collection(String)">
+      <Parameter Name="ShortName" Mode="In" Type="String" />
+      <Parameter Name="NewFullName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTeachers" ReturnType="Collection(String)">
+      <Parameter Name="Id" Mode="In" Type="String" />
+      <Parameter Name="NewShortPulpitName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTiemtable" ReturnType="Collection(Int32)">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="NewDayNumber" Mode="In" Type="String" />
+      <Parameter Name="NewPairNumber" Mode="In" Type="Int32" />
+      <Parameter Name="NewWeekNumber" Mode="In" Type="String" />
+      <Parameter Name="NewGroupId" Mode="In" Type="String" />
+      <Parameter Name="NewSubgroup" Mode="In" Type="String" />
+      <Parameter Name="NewShortSubjectName" Mode="In" Type="String" />
+      <Parameter Name="NewAudienceNumber" Mode="In" Type="String" />
+      <Parameter Name="NewTeacherId" Mode="In" Type="String" />
+      <Parameter Name="NewShortPairtypeName" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

@@ -11,6 +11,7 @@ using System.Windows;
 using CourseProjectTimetable.ViewModel.Commands;
 using System.Collections.Specialized;
 using CourseProjectTimetable;
+using System.Data.Entity;
 
 namespace CourseProjectTimetable.ViewModel
 {
@@ -19,6 +20,7 @@ namespace CourseProjectTimetable.ViewModel
         public PulpitsViewModel()
         {
             this.context = new TimetableCourseProject();
+            context.Pulpits.Load();
             PulpitDatabase = context.Pulpits.Local;
             Pulpit = new ObservableCollection<Pulpits>(PulpitDatabase);
             pulpitModel = new PulpitsModel();
@@ -241,7 +243,10 @@ namespace CourseProjectTimetable.ViewModel
         #region Methods
         private void FilterPulpits()
         {
-            if(Pulpit != null)
+            TimetableCourseProject Context = new TimetableCourseProject();
+            PulpitDatabase = new ObservableCollection<Pulpits>(Context.Pulpits.ToList());
+            context.Pulpits.Load();
+            if (Pulpit != null)
             { 
                 Pulpit.Clear();
                 foreach (var obj in PulpitDatabase)

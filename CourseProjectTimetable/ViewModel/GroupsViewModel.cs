@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Collections.Specialized;
 using CourseProjectTimetable;
+using System.Data.Entity;
 
 namespace CourseProjectTimetable.ViewModel
 {
@@ -21,6 +22,7 @@ namespace CourseProjectTimetable.ViewModel
         public GroupsViewModel()
         {
             this.context = new TimetableCourseProject();
+            context.Groups.Load();
             GroupsDatabase = context.Groups.Local;
             Groups = new ObservableCollection<Groups>(GroupsDatabase);
             groupModel = new GroupsModel();
@@ -279,7 +281,10 @@ namespace CourseProjectTimetable.ViewModel
         #region Methods
         private void FilterGroups()
         {
-            if(Groups != null)
+            TimetableCourseProject Context = new TimetableCourseProject();
+            GroupsDatabase = new ObservableCollection<Groups>(Context.Groups.ToList());
+            context.Groups.Load();
+            if (Groups != null)
             { 
                 Groups.Clear();
                 if(GroupsDatabase.Count != 0)

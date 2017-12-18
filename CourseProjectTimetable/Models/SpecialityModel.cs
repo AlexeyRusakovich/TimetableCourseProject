@@ -21,14 +21,9 @@ namespace CourseProject.Models
         {
             if (!IsExist(speciality))
             {
-                context.Specialities.Add(speciality);
-
-                if (IsContextChanged())
-                {
-                    return "Объект успешно добавлен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!";
+                context.InsertSpeciality(speciality.Code, speciality.ShortFacultyName, speciality.ShortName, speciality.FullName, speciality.Qualification);
+                
+                return "Объект успешно добавлен!";
             }
             else
                 return "Данный объект уже существует!";
@@ -38,17 +33,9 @@ namespace CourseProject.Models
         {
             if (IsExist(changedSpeciality))
             {
-                Specialities spec = ReturnSpeciality(changedSpeciality).First();
-                spec.ShortName = newSpeciality.ShortName;
-                spec.FullName = newSpeciality.FullName;
-                spec.ShortFacultyName = newSpeciality.ShortFacultyName;
-                spec.Qualification = newSpeciality.Qualification;
-                if (IsContextChanged())
-                {
-                    return "Объект успешно изменен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!\nВозможно вы никак не поменяли!";
+                context.UpdateSpeciality(changedSpeciality.Code, newSpeciality.ShortFacultyName, newSpeciality.ShortName, newSpeciality.FullName, newSpeciality.Qualification);
+
+                return "Объект успешно изменен!";
             }
             else
                 return "Данного объекта не существует!";
@@ -60,11 +47,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(speciality))
                 {
-                    if (IsContextChanged())
-                    {
                         return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -103,7 +86,8 @@ namespace CourseProject.Models
                     null, MessageBoxButton.OKCancel, MessageBoxImage.Question))
             {
                 case MessageBoxResult.OK:
-                    return context.Specialities.Remove(ReturnSpeciality(speciality).First()) != null;
+                    context.DeleteSpeciality(speciality.Code);
+                    return true;
                 case MessageBoxResult.Cancel:
                     return false;
             }

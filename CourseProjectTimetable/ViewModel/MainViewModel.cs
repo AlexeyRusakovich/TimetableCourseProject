@@ -41,6 +41,7 @@ namespace CourseProjectTimetable.ViewModel
             Subgroup = new ObservableCollection<string>(new List<string>() { "I", "II", "Нету" });
             WeekNumber = new ObservableCollection<string>(new List<string>() { "I", "II", "По обеим" });
             Corpses = new ObservableCollection<string>(new List<string>() { "1", "2", "3", "3а", "4", "5" });
+
             PairNumber = context.PairsNumber.Local;
             Timetable = context.Timetable.Local;
             Subjects = context.Subjects.Local;           
@@ -54,6 +55,34 @@ namespace CourseProjectTimetable.ViewModel
         }
 
         #region Properties
+
+        private Command filter;
+
+        public Command Filter
+        {
+            get
+            {
+                if (filter == null)
+                    filter = new Command(filterHandler);
+                return filter;
+            }
+        }
+
+        private void filterHandler(object obj)
+        {
+            context.Audience.Load();
+            context.Timetable.Load();
+            context.Subjects.Load();
+            context.Groups.Load();
+            context.Audience.Load();
+            context.Teachers.Load();
+            context.PairTypes.Load();
+            context.Specialities.Load();
+            context.Faculties.Load();
+            context.Pulpits.Load();
+            context.PairsNumber.Load();
+            context.PairTypes.Load();
+        }
 
         private ObservableCollection<string> dayNumber;
         private ObservableCollection<PairsNumber> pairNumber;

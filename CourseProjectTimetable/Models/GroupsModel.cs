@@ -21,14 +21,9 @@ namespace CourseProject.Models
         {
             if (!IsExist(group))
             {
-                context.Groups.Add(group);
+                context.InsertGroups(group.Id, group.SpecialityCode, group.Course, group.Number, group.Count);
 
-                if (IsContextChanged())
-                {
-                    return "Объект успешно добавлен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!";
+                return "Объект успешно добавлен!";
             }
             else
                 return "Данный объект уже существует!";
@@ -40,11 +35,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(group))
                 {
-                    if (IsContextChanged())
-                    {
                         return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -104,7 +95,8 @@ namespace CourseProject.Models
                     null, MessageBoxButton.OKCancel, MessageBoxImage.Question))
             {
                 case MessageBoxResult.OK:
-                    return context.Groups.Remove(ReturnGroup(groups).First()) != null;
+                    context.DeleteGroup(groups.Id);
+                    return true;
                 case MessageBoxResult.Cancel:
                     return false;
             }

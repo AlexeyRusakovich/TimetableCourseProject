@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.ObjectModel;
 using CourseProjectTimetable;
+using System.Data.Entity;
 
 namespace CourseProjectTimetable.ViewModel
 {
@@ -19,6 +20,7 @@ namespace CourseProjectTimetable.ViewModel
         public FacultiesViewModel()
         {
             this.context = new TimetableCourseProject();
+            context.Faculties.Load();
             FacultiesDatabase = context.Faculties.Local;
             Faculty = new ObservableCollection<Faculties>(FacultiesDatabase);
             facultyModel = new FacultiesModel();
@@ -215,6 +217,9 @@ namespace CourseProjectTimetable.ViewModel
         #region Methods
         private void FilterFaculties()
         {
+            TimetableCourseProject Context = new TimetableCourseProject();
+            FacultiesDatabase = new ObservableCollection<Faculties>(Context.Faculties.ToList());
+            context.Faculties.Load();
             if (Faculty != null)
             {
                 Faculty.Clear();

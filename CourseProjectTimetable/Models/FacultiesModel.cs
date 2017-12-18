@@ -21,14 +21,9 @@ namespace CourseProject.Models
         {
             if (!IsExist(faculties))
             {
-                context.Faculties.Add(faculties);
+                context.InsertFaculties(faculties.ShortName, faculties.FullName);
 
-                if (IsContextChanged())
-                {
-                    return "Объект успешно добавлен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!\n";
+                return "Объект успешно добавлен!";
             }
             else
                 return "Данный объект уже существует!";
@@ -38,13 +33,9 @@ namespace CourseProject.Models
         {
             if (IsExist(changedFaculty))
             {
-                var faculty = ReturnFaculty(changedFaculty).First();
-                faculty.FullName = newFaculty.FullName;
-                if (IsContextChanged())
-                {
-                    return "Изменение произошло успешно!";
-                }
-                return "Произошла ошибка изменения в EF!\nВозможно вы не изменили данные!";
+                context.UpdateFaculty(changedFaculty.ShortName, newFaculty.FullName);
+
+                return "Изменение произошло успешно!";
             }
             return "Изменяемого объекта не существует!";
         }
@@ -55,11 +46,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(faculties))
                 {
-                    if (IsContextChanged())
-                    {
-                        return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
+                    return "Удаление произошло успешно!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -89,11 +76,10 @@ namespace CourseProject.Models
                     null, MessageBoxButton.OKCancel, MessageBoxImage.Question))
             {
                 case MessageBoxResult.OK:
-                    foreach(var pair in context.Timetable.Local)
-                        foreach(var teacher in context.Teachers.Where(t => t.Pulpits.ShortFacultyName.Equals(faculty.ShortName)))
-                               if(pair.TeacherId.Equals(teacher.Id))
-                                context.Timetable.Remove(pair);
-                    return context.Faculties.Remove(ReturnFaculty(faculty).First()) != null;
+
+                    context.DeleteFaculty(faculty.ShortName);
+                    return true;
+
                 case MessageBoxResult.Cancel:
                     return false;
             }

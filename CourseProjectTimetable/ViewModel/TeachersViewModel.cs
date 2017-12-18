@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Data.Entity;
 
 namespace CourseProjectTimetable.ViewModel
 {
@@ -19,6 +20,7 @@ namespace CourseProjectTimetable.ViewModel
         public TeachersViewModel()
         {
             this.context = new TimetableCourseProject();
+            context.Teachers.Load();
             TeachersDatabase = context.Teachers.Local;
             Teachers = new ObservableCollection<Teachers>(TeachersDatabase);
             teachersModel = new TeachersModel();
@@ -269,6 +271,9 @@ namespace CourseProjectTimetable.ViewModel
         }
         private void FilterTeachers()
         {
+            TimetableCourseProject Context = new TimetableCourseProject();
+            TeachersDatabase = new ObservableCollection<Teachers>(Context.Teachers.ToList());
+            context.Teachers.Load();
             if (Teachers != null)
             {
                 Teachers.Clear();

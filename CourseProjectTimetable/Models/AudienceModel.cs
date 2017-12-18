@@ -21,14 +21,10 @@ namespace CourseProject.Models
         {
             if (!IsExist(audience))
             {
-                context.Audience.Add(audience);
+                context.InsertAudience(audience.Number,audience.Capacity);
 
-                if (IsContextChanged())
-                {
-                    return "Объект успешно добавлен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!";
+                return "Объект успешно добавлен!";
+
             }
             else
                 return "Данный объект уже существует!";
@@ -48,11 +44,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(audience))
                 {
-                    if (IsContextChanged())
-                    {
-                        return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
+                    return "Удаление произошло успешно!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -62,15 +54,10 @@ namespace CourseProject.Models
         {
             if(IsExist(changedAudience))
             {
-                changedAudience = ReturnAudience(changedAudience).First();
-                changedAudience.Capacity = newAudience.Capacity;
-                if (IsContextChanged())
-                {
-                    context.SaveChanges();
+                context.UpdateAudience(changedAudience.Number, newAudience.Capacity);
+                context.SaveChanges();
 
-                    return "Изменение произошло успешно!";
-                }
-                return "Произошла ошибка изменения в EF!\nВозможно вы не изменили данные!";
+                return "Изменение произошло успешно!";
             }
             return "Изменяемого объекта не существует!";
         }                   
@@ -80,8 +67,7 @@ namespace CourseProject.Models
         }
         public IQueryable<Audience> ReturnAudience(Audience audience)
         {
-            return context.Audience.Where(a => a.Number.Equals(audience.Number) &&
-                               a.Capacity == audience.Capacity);
+            return context.Audience.Where(a => a.Number.Equals(audience.Number));
         }
         public bool IsContextChanged()
         {
@@ -93,7 +79,8 @@ namespace CourseProject.Models
                     null, MessageBoxButton.OKCancel, MessageBoxImage.Question))
             {
                 case MessageBoxResult.OK:
-                    return context.Audience.Remove(ReturnAudience(audience).First()) != null;
+                    context.DeleteAudience(audience.Number);
+                        return true;
                 case MessageBoxResult.Cancel:
                     return false;
             }

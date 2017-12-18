@@ -21,14 +21,9 @@ namespace CourseProject.Models
         {
             if (!IsExist(subjects))
             {
-                context.Subjects.Add(subjects);
-
-                if (IsContextChanged())
-                {
-                    return "Объект успешно добавлен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!";
+                context.InsertSubjects(subjects.ShortName, subjects.FullName);
+                
+                return "Объект успешно добавлен!";
             }
             else
                 return "Данный объект уже существует!";
@@ -40,11 +35,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(subjects))
                 {
-                    if (IsContextChanged())
-                    {
-                        return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
+                    return "Удаление произошло успешно!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -55,13 +46,9 @@ namespace CourseProject.Models
         {
             if (IsExist(changedSubjects))
             {
-                Subjects sub = ReturnSubject(changedSubjects).First();
-                sub.FullName = newSubject.FullName;
-                if (IsContextChanged())
-                {
-                    return "Изменение произошло успешно!";
-                }
-                return "Произошла ошибка изменения в EF!\nВозможны вы никак не изменили данные!";
+                context.UpdateSubjects(changedSubjects.ShortName, newSubject.FullName);
+
+                return "Изменение произошло успешно!";                
             }
             return "Данный объект не существует!";
         }
@@ -96,7 +83,8 @@ namespace CourseProject.Models
                     null, MessageBoxButton.OKCancel, MessageBoxImage.Question))
             {
                 case MessageBoxResult.OK:
-                    return context.Subjects.Remove(ReturnSubject(subjects).First()) != null;
+                    context.DeleteSubjects(subjects.ShortName);
+                    return true;
                 case MessageBoxResult.Cancel:
                     return false;
             }

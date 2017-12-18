@@ -22,14 +22,9 @@ namespace CourseProject.Models
         {
             if (!IsExist(pulpits))
             {
-                context.Pulpits.Add(pulpits);
-
-                if (IsContextChanged())
-                {
-                    return "Объект успешно добавлен!";
-                }
-                else
-                    return "Произошла ошибка добавления в EF!";
+                context.InsertPulpit(pulpits.ShortName, pulpits.FullName, pulpits.ShortFacultyName);
+                
+                return "Объект успешно добавлен!";
             }
             else
                 return "Данный объект уже существует!";
@@ -39,14 +34,10 @@ namespace CourseProject.Models
         {
             if (IsExist(changedPulpit))
             {
-                var pulpit = ReturnPulpit(changedPulpit).First();
-                pulpit.FullName = newPulpit.FullName;
-                pulpit.ShortFacultyName = newPulpit.ShortFacultyName;
-                if (IsContextChanged())
-                {
-                    return "Изменение произошло успешно!";
-                }
-                return "Произошла ошибка удаления в EF!\nИли вы никак не изменили данные!";
+                context.UpdatePulpit(changedPulpit.ShortName, newPulpit.FullName, newPulpit.ShortFacultyName);
+
+                return "Изменение произошло успешно!";
+
             }
             return "Данный объект не существует!";
         }
@@ -57,11 +48,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(pulpits))
                 {
-                    if (IsContextChanged())
-                    {
                         return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -103,11 +90,8 @@ namespace CourseProject.Models
                     null, MessageBoxButton.OKCancel, MessageBoxImage.Question))
             {
                 case MessageBoxResult.OK:
-                    foreach (var pair in context.Timetable)
-                        foreach(var teacher in context.Teachers.Where( t=> t.ShortPulpitName.Equals(pulpit.ShortName)))
-                        if (pair.TeacherId.Equals(teacher.Id))
-                            context.Timetable.Remove(pair);
-                    return context.Pulpits.Remove(ReturnPulpit(pulpit).First()) != null;
+                    context.DeletePulpit(pulpit.ShortName);
+                    return true;
                 case MessageBoxResult.Cancel:
                     return false;
             }

@@ -13,7 +13,7 @@
     </Page.DataContext>
 
     <Grid>
-        <Button Style="{StaticResource MetroButton}" Command="{Binding Filter}" Panel.ZIndex="5"  Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="270,0">
+        <Button Style="{StaticResource MetroButton}" Command="{Binding Filter, Source={StaticResource MainViewModel}}" Panel.ZIndex="5"  Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="270,0">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/refresh.png"/>
             </Button.Background>
@@ -164,7 +164,7 @@
                                    FontFamily="Segoe UI LIght"
                                    FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_день_недели_изменение"
-                                  ItemsSource="{Binding DayNumber}"
+                                  ItemsSource="{Binding DayNumber, Source={StaticResource MainViewModel}}"
                                  Text="{Binding ChangeDayNumber, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 
                                Foreground="Red" 
@@ -176,7 +176,7 @@
                                 FontFamily="Segoe UI LIght" 
                                 FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_номер_пары_изменение"
-                                      ItemsSource="{Binding PairNumber}"
+                                      ItemsSource="{Binding PairNumber, Source={StaticResource MainViewModel}}"
                                       DisplayMemberPath="Number"
                                     Text="{Binding ChangePairNumber, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 
@@ -186,7 +186,7 @@
 
                             <Label  Content="Номер недели" FontFamily="Segoe UI LIght" FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_номер_недели_изменение"
-                                      ItemsSource="{Binding WeekNumber}"
+                                      ItemsSource="{Binding WeekNumber, Source={StaticResource MainViewModel}}"
                                  Text="{Binding ChangeWeekNumber, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 
                                Foreground="Red" 
@@ -198,7 +198,7 @@
                                    FontFamily="Segoe UI LIght" 
                                    FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_предмет_изменение"
-                                  ItemsSource="{Binding Subjects}"
+                                  ItemsSource="{Binding Subjects, Source={StaticResource MainViewModel}}"
                                   DisplayMemberPath="ShortName"
                                  Text="{Binding ChangeShortSubjectName, ValidatesOnDataErrors=True}" />
                             <Label FontWeight="Bold" 
@@ -211,7 +211,7 @@
                                    FontFamily="Segoe UI LIght" 
                                    FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_группа_изменение"
-                                  ItemsSource="{Binding Groups}"
+                                  ItemsSource="{Binding Groups, Source={StaticResource MainViewModel}}"
                                   DisplayMemberPath="Id"
                                  Text="{Binding ChangeGroupId, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 
@@ -223,7 +223,7 @@
                                    FontFamily="Segoe UI LIght" 
                                    FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" 
-                                      ItemsSource="{Binding Subgroup}"
+                                      ItemsSource="{Binding Subgroup, Source={StaticResource MainViewModel}}"
                                       x:Name="Расписание_подгруппа_изменение"
                                  Text="{Binding ChangeSubgroup, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 
@@ -236,7 +236,7 @@
                                    FontFamily="Segoe UI LIght" 
                                    FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_аудитория_изменение"
-                                  ItemsSource="{Binding AudienceNumber}"
+                                  ItemsSource="{Binding AudienceNumber, Source={StaticResource MainViewModel}}"
                                   DisplayMemberPath="Number"
                                  Text="{Binding ChangeAudienceNumber, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 
@@ -249,7 +249,7 @@
                                    FontFamily="Segoe UI LIght" 
                                    FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_преподаватель_изменение"
-                                  ItemsSource="{Binding TeacherId}"
+                                  ItemsSource="{Binding TeacherId, Source={StaticResource MainViewModel}}"
                                   DisplayMemberPath="Id"
                                   Text="{Binding ChangeTeacherId, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 
@@ -262,7 +262,7 @@
                                    FontFamily="Segoe UI LIght" 
                                    FontSize="15"/>
                             <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="Расписание_тип_занятия_изменение" 
-                                  ItemsSource="{Binding ShortPairtypeName}"
+                                  ItemsSource="{Binding ShortPairtypeName, Source={StaticResource MainViewModel}}"
                                   DisplayMemberPath="ShortName"
                                   Text="{Binding ChangeShortPairtypeName, ValidatesOnDataErrors=True}"/>
                             <Label FontWeight="Bold" 

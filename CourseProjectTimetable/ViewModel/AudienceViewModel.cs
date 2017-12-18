@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using System.Collections.Specialized;
+using System.Data.Entity;
 
 namespace CourseProjectTimetable.ViewModel
 {
@@ -17,6 +18,7 @@ namespace CourseProjectTimetable.ViewModel
         public AudienceViewModel()
         {
             this.context = new TimetableCourseProject();
+            context.Audience.Load();
             AudienceNumberDatabase = context.Audience.Local;
             AudienceNumber = new ObservableCollection<Audience>(AudienceNumberDatabase);
             audienceModel = new AudienceModel();
@@ -241,9 +243,30 @@ namespace CourseProjectTimetable.ViewModel
         #endregion
 
         #region Methods
-        
-        private void FilterAudience()
+
+        private Command filter;
+
+        public Command Filter
         {
+            get
+            {
+                if (filter == null)
+                        filter = new Command(filterHandler);
+                return filter;
+            }
+        }
+
+        private void filterHandler(object obj)
+        {
+            FilterAudience();
+        }
+
+        private async void FilterAudience()
+        {
+            TimetableCourseProject Context = new TimetableCourseProject();
+            AudienceNumberDatabase = new ObservableCollection<Audience>(await Context.Audience.ToListAsync());
+
+            context.Audience.Load();
             if (AudienceNumber != null)
             {
                 AudienceNumber.Clear();

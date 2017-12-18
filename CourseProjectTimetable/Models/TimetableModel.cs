@@ -23,14 +23,11 @@ namespace CourseProject.Models
                 string result = null;
                 if ((result = IsCorrectTimetable(timetable)) == null)
                 {
-                    context.Timetable.Add(timetable);
+                    context.InsertTimeTable(timetable.DayNumber, timetable.PairNumber, timetable.WeekNumber,
+                        timetable.GroupId, timetable.Subgroup, timetable.ShortSubjectName, timetable.AudienceNumber,
+                        timetable.TeacherId, timetable.ShortPairtypeName);
 
-                    if (IsContextChanged())
-                    {
-                        return "Объект успешно добавлен!";
-                    }
-                    else
-                        return "Произошла ошибка добавления в EF!";
+                   return "Объект успешно добавлен!";
                 }
                 else
                     return result;
@@ -42,32 +39,15 @@ namespace CourseProject.Models
         {
             if (IsExist(cht))
             {
-                string result;
                 Timetable t = new Timetable();
                 t = ReturnTimetable(cht).First();
-                nt.Id = t.Id;
+                int id = t.Id;
 
-                if ((result = IsCorrectTimetable(nt)) == null)
-                {                    
+                context.UpdateTiemtable(id, nt.DayNumber, nt.PairNumber, nt.WeekNumber, nt.GroupId,
+                    nt.Subgroup, nt.ShortSubjectName, nt.AudienceNumber, nt.TeacherId, nt.ShortPairtypeName);
 
-                    t.PairNumber = nt.PairNumber;
-                    t.ShortPairtypeName = nt.ShortPairtypeName;
-                    t.DayNumber = nt.DayNumber;
-                    t.TeacherId = nt.TeacherId;
-                    t.ShortSubjectName = nt.ShortSubjectName;
-                    t.GroupId = nt.GroupId;
-                    t.Subgroup = nt.Subgroup;
-                    t.WeekNumber = nt.WeekNumber;
-                    t.AudienceNumber = nt.AudienceNumber;
-
-                    if (IsContextChanged())
-                    {
-                        return "Объект успешно изменен!";
-                    }
-                    else
-                        return "Произошла ошибка изменения в EF!\nВозмоджно вы никак не изменили данные!";
-                }
-                    return result;
+                
+                return "Объект успешно изменен!";
             }
             else
                 return "Изменяемого объекта не существует!";
@@ -78,11 +58,7 @@ namespace CourseProject.Models
             {
                 if (IsRemoved(timetable))
                 {
-                    if (IsContextChanged())
-                    {
                         return "Удаление произошло успешно!";
-                    }
-                    return "Произошла ошибка удаления в EF!";
                 }
                 return "Данный объект не был удален!";
             }
@@ -126,7 +102,8 @@ namespace CourseProject.Models
         }
         public bool IsRemoved(Timetable timetable)
         {
-            return context.Timetable.Remove(ReturnTimetable(timetable).First()) != null;
+            context.DeleteTiemtable(ReturnTimetable(timetable).First().Id);
+            return true;
         }
         public string IsCorrectTimetable(Timetable t2)
         {
