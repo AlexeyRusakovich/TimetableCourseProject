@@ -141,7 +141,8 @@
                                    FontFamily="Segoe UI LIght" 
                                    FontSize="15"/>
                         <ComboBox x:Name="Преподаватели_кафедра_изменение"
-                                  Style="{StaticResource ComboBoxFlatStyle}" ItemsSource="{Binding Pulpits}"
+                                  Style="{StaticResource ComboBoxFlatStyle}"
+                                  ItemsSource="{Binding Pulpits, Source={StaticResource MainViewModel}}"
                                   DisplayMemberPath="ShortName"
                                   Text="{Binding ChangeShortPulpitName, ValidatesOnDataErrors=True}"/>
                         <Label FontWeight="Bold" 

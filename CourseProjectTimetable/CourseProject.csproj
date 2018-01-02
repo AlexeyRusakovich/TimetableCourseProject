@@ -80,6 +80,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -94,6 +97,20 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FixedDocumentViewers">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Controls.FixedDocumentViewers.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -104,6 +121,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Audience.cs">
+      <DependentUpon>Timetable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DayNumbers.cs">
       <DependentUpon>Timetable.tt</DependentUpon>
     </Compile>
     <Compile Include="Faculties.cs">
@@ -159,6 +179,7 @@
     <Compile Include="ViewModel\AudienceViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Command\Command.cs" />
+    <Compile Include="ViewModel\DisplayTimetableViewModel.cs" />
     <Compile Include="ViewModel\FacultiesViewModel.cs" />
     <Compile Include="ViewModel\GroupsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -169,6 +190,9 @@
     <Compile Include="ViewModel\TimetableViewModel.cs" />
     <Compile Include="View\AudienceView.xaml.cs">
       <DependentUpon>AudienceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DisplayTimetableView.xaml.cs">
+      <DependentUpon>DisplayTimetableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FacultyView.xaml.cs">
       <DependentUpon>FacultyView.xaml</DependentUpon>
@@ -204,6 +228,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AudienceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DisplayTimetableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -270,7 +298,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Timetable.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Timetable.edmx</DependentUpon>
+      <LastGenOutput>Timetable.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Timetable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Timetable.edmx</DependentUpon>
+      <LastGenOutput>Timetable1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\add.png" />
     <Resource Include="Resources\audience.png" />
@@ -287,18 +326,6 @@
     <Resource Include="Resources\subjects.png" />
     <Resource Include="Resources\teachers.png" />
     <Resource Include="Resources\timetable.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Timetable.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Timetable.Context.cs</LastGenOutput>
-      <DependentUpon>Timetable.edmx</DependentUpon>
-    </Content>
-    <Content Include="Timetable.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Timetable.edmx</DependentUpon>
-      <LastGenOutput>Timetable1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -59,7 +59,7 @@ namespace CourseProjectTimetable.ViewModel
                 if (currentDataGridItem != null)
                 {
                     ChangeAudienceNumber = currentDataGridItem.AudienceNumber;
-                    ChangeDayNumber = currentDataGridItem.DayNumber;
+                    ChangeDayNumber = currentDataGridItem.DayNumbers;
                     ChangeGroupId = currentDataGridItem.GroupId;
                     ChangePairNumber = currentDataGridItem.PairNumber.ToString();
                     ChangeShortPairtypeName = currentDataGridItem.ShortPairtypeName;
@@ -109,7 +109,7 @@ namespace CourseProjectTimetable.ViewModel
 
         private string AddErrors;
 
-        public string AddDayNumber { get; set; }
+        public DayNumbers AddDayNumber { get; set; }
         public string AddPairNumber { get; set; }
         public string AddWeekNumber { get; set; }
         public string AddGroupId { get; set; }
@@ -125,7 +125,7 @@ namespace CourseProjectTimetable.ViewModel
 
         private string ChangeErrors;
 
-        private string changeDayNumber;
+        private DayNumbers changeDayNumber;
         private string changePairNumber;
         private string changeWeekNumber;
         private string changeGroupId;
@@ -135,7 +135,7 @@ namespace CourseProjectTimetable.ViewModel
         private string changeTeacherId;
         private string changeShortPairtypeName;
 
-        public string ChangeDayNumber
+        public DayNumbers ChangeDayNumber
         {
             get { return changeDayNumber; }
             set
@@ -411,7 +411,7 @@ namespace CourseProjectTimetable.ViewModel
                     return false;
                 if (!String.IsNullOrWhiteSpace(searchWeekNumber) && !timetable.WeekNumber.Contains(searchWeekNumber))
                     return false;
-                if (!String.IsNullOrWhiteSpace(searchDayNumber) && !timetable.DayNumber.Contains(searchDayNumber))
+                if (!String.IsNullOrWhiteSpace(searchDayNumber) && !timetable.DayNumbers.DayNumberName.Contains(searchDayNumber))
                     return false;
                 if(!String.IsNullOrWhiteSpace(searchSubgroup) && !timetable.Subgroup.Contains(searchSubgroup))
                     return false;
@@ -424,7 +424,7 @@ namespace CourseProjectTimetable.ViewModel
             if (IsValid(ValidatesAddProperties, out AddErrors))
             {
                 MessageBox.Show(timetableModel.Add(TimetableModel.getTimetableObject(AddAudienceNumber,AddGroupId, AddSubgroup,
-                AddTeacherId,AddShortPairtypeName, int.Parse(AddPairNumber), AddWeekNumber, AddShortSubjectName, AddDayNumber)), "Результат добавления");
+                AddTeacherId,AddShortPairtypeName, int.Parse(AddPairNumber), AddWeekNumber, AddShortSubjectName, AddDayNumber.Id)), "Результат добавления");
                 FilterTimetable();
             }
             else
@@ -438,12 +438,12 @@ namespace CourseProjectTimetable.ViewModel
                 if (IsValid(ValidatesChangeProperties, out ChangeErrors))
                 {
                     if (timetableModel.IsExist(TimetableModel.getTimetableObject(changeAudienceNumber, changeGroupId, changeSubgroup,
-                        changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber)))
+                        changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber.Id)))
                     {
                         EditButtonContent = "Сохранить";
                         CancelVisibility = Visibility.Visible;
                         changedTimetable = TimetableModel.getTimetableObject(changeAudienceNumber, changeGroupId, changeSubgroup,
-                        changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber);
+                        changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber.Id);
                         return;
                     }
                     else
@@ -459,7 +459,7 @@ namespace CourseProjectTimetable.ViewModel
                 if (IsValid(ValidatesChangeProperties, out ChangeErrors))
                 {
                     MessageBox.Show(timetableModel.Change(changedTimetable, TimetableModel.getTimetableObject(changeAudienceNumber, changeGroupId,
-                    changeSubgroup, changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber)), "Результат изменения");
+                    changeSubgroup, changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber.Id)), "Результат изменения");
                     EditButtonContent = "Изменить";
                     CancelVisibility = Visibility.Collapsed;
                     FilterTimetable();
@@ -482,7 +482,7 @@ namespace CourseProjectTimetable.ViewModel
                 if (IsValid(ValidatesChangeProperties, out ChangeErrors))
                 {
                     MessageBox.Show(timetableModel.Remove(TimetableModel.getTimetableObject(changeAudienceNumber, 
-                    changeGroupId, changeSubgroup, changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber)), "Результат удаления");
+                    changeGroupId, changeSubgroup, changeTeacherId, changeShortPairtypeName, int.Parse(changePairNumber), changeWeekNumber, changeShortSubjectName, changeDayNumber.Id)), "Результат удаления");
                     FilterTimetable();
                 }
                 else
@@ -555,13 +555,13 @@ namespace CourseProjectTimetable.ViewModel
             {
                 case "AddDayNumber":
 
-                    if (string.IsNullOrWhiteSpace(AddDayNumber))
+                    if (AddDayNumber == null)
                         return EmptyString();
                     return null;
 
                 case "ChangeDayNumber":
 
-                    if (string.IsNullOrWhiteSpace(changeDayNumber))
+                    if (changeDayNumber == null)
                         return EmptyString();
                     return null;
 

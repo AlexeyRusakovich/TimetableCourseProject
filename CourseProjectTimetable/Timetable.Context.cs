@@ -28,6 +28,7 @@ namespace CourseProjectTimetable
         }
     
         public virtual DbSet<Audience> Audience { get; set; }
+        public virtual DbSet<DayNumbers> DayNumbers { get; set; }
         public virtual DbSet<Faculties> Faculties { get; set; }
         public virtual DbSet<Groups> Groups { get; set; }
         public virtual DbSet<PairsNumber> PairsNumber { get; set; }
@@ -108,6 +109,16 @@ namespace CourseProjectTimetable
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("DeleteTiemtable", idParameter);
+        }
+    
+        public virtual int GroupsFromXML()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GroupsFromXML");
+        }
+    
+        public virtual ObjectResult<string> GroupsToXML()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GroupsToXML");
         }
     
         public virtual int InsertAudience(string number, Nullable<int> capacity)
@@ -241,11 +252,11 @@ namespace CourseProjectTimetable
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertTeachers", idParameter, nameParameter, surnameParameter, patronymicParameter, shortPulpitNameParameter);
         }
     
-        public virtual int InsertTimeTable(string dayNumber, Nullable<int> pairNumber, string weekNumber, string groupId, string subgroup, string shortSubjectName, string audienceNumber, string teacherId, string shortPairtypeName)
+        public virtual int InsertTimeTable(Nullable<int> dayNumberId, Nullable<int> pairNumber, string weekNumber, string groupId, string subgroup, string shortSubjectName, string audienceNumber, string teacherId, string shortPairtypeName)
         {
-            var dayNumberParameter = dayNumber != null ?
-                new ObjectParameter("DayNumber", dayNumber) :
-                new ObjectParameter("DayNumber", typeof(string));
+            var dayNumberIdParameter = dayNumberId.HasValue ?
+                new ObjectParameter("DayNumberId", dayNumberId) :
+                new ObjectParameter("DayNumberId", typeof(int));
     
             var pairNumberParameter = pairNumber.HasValue ?
                 new ObjectParameter("PairNumber", pairNumber) :
@@ -279,7 +290,7 @@ namespace CourseProjectTimetable
                 new ObjectParameter("ShortPairtypeName", shortPairtypeName) :
                 new ObjectParameter("ShortPairtypeName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertTimeTable", dayNumberParameter, pairNumberParameter, weekNumberParameter, groupIdParameter, subgroupParameter, shortSubjectNameParameter, audienceNumberParameter, teacherIdParameter, shortPairtypeNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertTimeTable", dayNumberIdParameter, pairNumberParameter, weekNumberParameter, groupIdParameter, subgroupParameter, shortSubjectNameParameter, audienceNumberParameter, teacherIdParameter, shortPairtypeNameParameter);
         }
     
         public virtual ObjectResult<string> UpdateAudience(string number, Nullable<int> newCapacity)
@@ -389,15 +400,15 @@ namespace CourseProjectTimetable
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateTeachers", idParameter, newShortPulpitNameParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UpdateTiemtable(Nullable<int> id, string newDayNumber, Nullable<int> newPairNumber, string newWeekNumber, string newGroupId, string newSubgroup, string newShortSubjectName, string newAudienceNumber, string newTeacherId, string newShortPairtypeName)
+        public virtual ObjectResult<Nullable<int>> UpdateTiemtable(Nullable<int> id, Nullable<int> newDayNumberId, Nullable<int> newPairNumber, string newWeekNumber, string newGroupId, string newSubgroup, string newShortSubjectName, string newAudienceNumber, string newTeacherId, string newShortPairtypeName)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("Id", id) :
                 new ObjectParameter("Id", typeof(int));
     
-            var newDayNumberParameter = newDayNumber != null ?
-                new ObjectParameter("NewDayNumber", newDayNumber) :
-                new ObjectParameter("NewDayNumber", typeof(string));
+            var newDayNumberIdParameter = newDayNumberId.HasValue ?
+                new ObjectParameter("NewDayNumberId", newDayNumberId) :
+                new ObjectParameter("NewDayNumberId", typeof(int));
     
             var newPairNumberParameter = newPairNumber.HasValue ?
                 new ObjectParameter("NewPairNumber", newPairNumber) :
@@ -431,7 +442,7 @@ namespace CourseProjectTimetable
                 new ObjectParameter("NewShortPairtypeName", newShortPairtypeName) :
                 new ObjectParameter("NewShortPairtypeName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UpdateTiemtable", idParameter, newDayNumberParameter, newPairNumberParameter, newWeekNumberParameter, newGroupIdParameter, newSubgroupParameter, newShortSubjectNameParameter, newAudienceNumberParameter, newTeacherIdParameter, newShortPairtypeNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UpdateTiemtable", idParameter, newDayNumberIdParameter, newPairNumberParameter, newWeekNumberParameter, newGroupIdParameter, newSubgroupParameter, newShortSubjectNameParameter, newAudienceNumberParameter, newTeacherIdParameter, newShortPairtypeNameParameter);
         }
     }
 }

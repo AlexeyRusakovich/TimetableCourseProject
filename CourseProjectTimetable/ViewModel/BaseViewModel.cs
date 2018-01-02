@@ -7,6 +7,36 @@ using System.Threading.Tasks;
 
 namespace CourseProjectTimetable.ViewModel
 {
+    public static class MyExMethods
+    {
+
+        // Сводка:
+        //     Преобразовывает строковое значение данного экземпляра в эквивалентное ему числовое
+        //     представление.
+        //
+        // Возврат:
+        //     Числовое представление значения данного экземпляра если данную строку можно привести
+        //     к числовому значению, в другом случае возвращает 0.
+        public static int ToInt(this string str)
+        {
+            try
+            {
+                int ri = 0;
+
+                int.TryParse(str, out ri);
+
+                return ri;
+
+            }
+            catch
+            {
+                return 0;
+            }
+
+        }
+    }
+
+
     public class BaseViewModel
     {
         protected bool IsRange(string someCount, int from, int to)

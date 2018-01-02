@@ -15,7 +15,7 @@ namespace CourseProjectTimetable
     public partial class Timetable
     {
         public int Id { get; set; }
-        public string DayNumber { get; set; }
+        public int DayNumberId { get; set; }
         public int PairNumber { get; set; }
         public string WeekNumber { get; set; }
         public string GroupId { get; set; }
@@ -26,6 +26,7 @@ namespace CourseProjectTimetable
         public string ShortPairtypeName { get; set; }
     
         public virtual Audience Audience { get; set; }
+        public virtual DayNumbers DayNumbers { get; set; }
         public virtual Groups Groups { get; set; }
         public virtual PairsNumber PairsNumber { get; set; }
         public virtual PairTypes PairTypes { get; set; }

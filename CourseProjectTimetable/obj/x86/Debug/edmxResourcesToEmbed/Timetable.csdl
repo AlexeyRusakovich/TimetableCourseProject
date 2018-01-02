@@ -8,6 +8,14 @@
     <Property Name="Capacity" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Timetable" Relationship="Self.FK_Timetable_Audience" FromRole="Audience" ToRole="Timetable" />
   </EntityType>
+  <EntityType Name="DayNumbers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="DayNumberName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Timetable" Relationship="Self.FK_Timetable_DayNumbers" FromRole="DayNumbers" ToRole="Timetable" />
+  </EntityType>
   <EntityType Name="Faculties">
     <Key>
       <PropertyRef Name="ShortName" />
@@ -91,7 +99,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DayNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DayNumberId" Type="Int32" Nullable="false" />
     <Property Name="PairNumber" Type="Int32" Nullable="false" />
     <Property Name="WeekNumber" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
     <Property Name="GroupId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
@@ -101,6 +109,7 @@
     <Property Name="TeacherId" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ShortPairtypeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Audience" Relationship="Self.FK_Timetable_Audience" FromRole="Timetable" ToRole="Audience" />
+    <NavigationProperty Name="DayNumbers" Relationship="Self.FK_Timetable_DayNumbers" FromRole="Timetable" ToRole="DayNumbers" />
     <NavigationProperty Name="Groups" Relationship="Self.FK_Timetable_Groups" FromRole="Timetable" ToRole="Groups" />
     <NavigationProperty Name="PairsNumber" Relationship="Self.FK_Timetable_PairsNumber" FromRole="Timetable" ToRole="PairsNumber" />
     <NavigationProperty Name="PairTypes" Relationship="Self.FK_Timetable_PairTypes" FromRole="Timetable" ToRole="PairTypes" />
@@ -118,6 +127,18 @@
       </Principal>
       <Dependent Role="Timetable">
         <PropertyRef Name="AudienceNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_DayNumbers">
+    <End Role="DayNumbers" Type="Self.DayNumbers" Multiplicity="1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DayNumbers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="DayNumberId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -233,6 +254,7 @@
   </Association>
   <EntityContainer Name="TimetableCourseProject" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Audience" EntityType="Self.Audience" />
+    <EntitySet Name="DayNumbers" EntityType="Self.DayNumbers" />
     <EntitySet Name="Faculties" EntityType="Self.Faculties" />
     <EntitySet Name="Groups" EntityType="Self.Groups" />
     <EntitySet Name="PairsNumber" EntityType="Self.PairsNumber" />
@@ -244,6 +266,10 @@
     <EntitySet Name="Timetable" EntityType="Self.Timetable" />
     <AssociationSet Name="FK_Timetable_Audience" Association="Self.FK_Timetable_Audience">
       <End Role="Audience" EntitySet="Audience" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_DayNumbers" Association="Self.FK_Timetable_DayNumbers">
+      <End Role="DayNumbers" EntitySet="DayNumbers" />
       <End Role="Timetable" EntitySet="Timetable" />
     </AssociationSet>
     <AssociationSet Name="FK_Specialities_Faculties" Association="Self.FK_Specialities_Faculties">
@@ -302,6 +328,8 @@
     <FunctionImport Name="DeleteTiemtable" ReturnType="Collection(Int32)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GroupsFromXML" />
+    <FunctionImport Name="GroupsToXML" ReturnType="Collection(String)" />
     <FunctionImport Name="InsertAudience">
       <Parameter Name="number" Mode="In" Type="String" />
       <Parameter Name="capacity" Mode="In" Type="Int32" />
@@ -341,7 +369,7 @@
       <Parameter Name="ShortPulpitName" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="InsertTimeTable">
-      <Parameter Name="DayNumber" Mode="In" Type="String" />
+      <Parameter Name="DayNumberId" Mode="In" Type="Int32" />
       <Parameter Name="PairNumber" Mode="In" Type="Int32" />
       <Parameter Name="WeekNumber" Mode="In" Type="String" />
       <Parameter Name="GroupId" Mode="In" Type="String" />
@@ -385,7 +413,7 @@
     </FunctionImport>
     <FunctionImport Name="UpdateTiemtable" ReturnType="Collection(Int32)">
       <Parameter Name="Id" Mode="In" Type="Int32" />
-      <Parameter Name="NewDayNumber" Mode="In" Type="String" />
+      <Parameter Name="NewDayNumberId" Mode="In" Type="Int32" />
       <Parameter Name="NewPairNumber" Mode="In" Type="Int32" />
       <Parameter Name="NewWeekNumber" Mode="In" Type="String" />
       <Parameter Name="NewGroupId" Mode="In" Type="String" />

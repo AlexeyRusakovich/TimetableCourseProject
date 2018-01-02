@@ -23,7 +23,7 @@ namespace CourseProject.Models
                 string result = null;
                 if ((result = IsCorrectTimetable(timetable)) == null)
                 {
-                    context.InsertTimeTable(timetable.DayNumber, timetable.PairNumber, timetable.WeekNumber,
+                    context.InsertTimeTable(timetable.DayNumberId, timetable.PairNumber, timetable.WeekNumber,
                         timetable.GroupId, timetable.Subgroup, timetable.ShortSubjectName, timetable.AudienceNumber,
                         timetable.TeacherId, timetable.ShortPairtypeName);
 
@@ -43,7 +43,7 @@ namespace CourseProject.Models
                 t = ReturnTimetable(cht).First();
                 int id = t.Id;
 
-                context.UpdateTiemtable(id, nt.DayNumber, nt.PairNumber, nt.WeekNumber, nt.GroupId,
+                context.UpdateTiemtable(id, nt.DayNumberId, nt.PairNumber, nt.WeekNumber, nt.GroupId,
                     nt.Subgroup, nt.ShortSubjectName, nt.AudienceNumber, nt.TeacherId, nt.ShortPairtypeName);
 
                 
@@ -73,7 +73,7 @@ namespace CourseProject.Models
             return context.Timetable.Where(a =>
                     a.PairNumber == timetable.PairNumber &&
                     a.AudienceNumber.Equals(timetable.AudienceNumber) &&
-                    a.DayNumber.Equals(timetable.DayNumber) &&
+                    a.DayNumberId.Equals(timetable.DayNumberId) &&
                     a.GroupId.Equals(timetable.GroupId) &&
                     a.Subgroup.Equals(timetable.Subgroup) &&
                     a.TeacherId.Equals(timetable.TeacherId) &&
@@ -82,7 +82,7 @@ namespace CourseProject.Models
                     a.ShortSubjectName.Equals(timetable.ShortSubjectName));
         }
         public static Timetable getTimetableObject(string audienceNumber, string group, string subgroup,
-            string teacher, string pairType, int pairNumber, string weekNumber, string subject, string dayNumber)
+            string teacher, string pairType, int pairNumber, string weekNumber, string subject, int dayNumber)
         {
             Timetable t = new Timetable();
             t.AudienceNumber = audienceNumber;
@@ -93,7 +93,7 @@ namespace CourseProject.Models
             t.PairNumber = pairNumber;
             t.WeekNumber = weekNumber.Equals("По обеим") ? null : weekNumber;
             t.ShortSubjectName = subject;
-            t.DayNumber = dayNumber;
+            t.DayNumberId = dayNumber;
             return t;
         }
         public bool IsContextChanged()
@@ -110,7 +110,7 @@ namespace CourseProject.Models
             if (context.Timetable.Where(t => !(t.Id == t2.Id) &&
                                              t.GroupId.Equals(t2.GroupId)                   &&
 
-                                             t.DayNumber.Equals(t2.DayNumber)               &&
+                                             t.DayNumberId.Equals(t2.DayNumberId)               &&
                                              
                                              t.WeekNumber.Equals(t2.WeekNumber)             &&
 
@@ -129,7 +129,7 @@ namespace CourseProject.Models
             if (context.Timetable.Where(t => !(t.Id == t2.Id) &&
                                             t.GroupId.Equals(t2.GroupId)  &&
 
-                                             t.DayNumber.Equals(t2.DayNumber) &&
+                                             t.DayNumberId.Equals(t2.DayNumberId) &&
 
                                              t.WeekNumber.Equals(t2.WeekNumber) &&
 
@@ -147,7 +147,7 @@ namespace CourseProject.Models
             if (context.Timetable.Where(t => !(t.Id == t2.Id) &&
                                             ((t.GroupId.Equals(t2.GroupId))                  &&
 
-                                            (t.DayNumber.Equals(t2.DayNumber))               &&
+                                            (t.DayNumberId.Equals(t2.DayNumberId))               &&
 
                                             (t.PairNumber == t2.PairNumber)                  &&
 
@@ -168,7 +168,7 @@ namespace CourseProject.Models
             if (context.Timetable.Where(t => !(t.Id == t2.Id) &&
                                             (t.TeacherId.Equals(t2.TeacherId)               &&
 
-                                            t.DayNumber.Equals(t2.DayNumber)                &&
+                                            t.DayNumberId.Equals(t2.DayNumberId)                &&
 
                                             t.PairNumber == t2.PairNumber                   &&
 
@@ -189,7 +189,7 @@ namespace CourseProject.Models
             if (context.Timetable.Where(t => !(t.Id == t2.Id) &&
                                             t.TeacherId.Equals(t2.TeacherId) &&
 
-                                            t.DayNumber.Equals(t2.DayNumber) &&
+                                            t.DayNumberId.Equals(t2.DayNumberId) &&
 
                                             t.PairNumber == t2.PairNumber &&
 
@@ -211,7 +211,7 @@ namespace CourseProject.Models
             if (context.Timetable.Where(t =>    (t.Id != t2.Id) &&
                                                 !(t.TeacherId.Equals(t2.TeacherId)) &&
 
-                                                 t.DayNumber.Equals(t2.DayNumber) &&
+                                                 t.DayNumberId.Equals(t2.DayNumberId) &&
 
                                                  t.PairNumber == t2.PairNumber &&
 
@@ -231,7 +231,7 @@ namespace CourseProject.Models
                     "в аудиторию занятую другим преподавателем";
 
             if (context.Timetable.Where(t => (t.Id != t2.Id) &&
-                                            t.DayNumber.Equals(t2.DayNumber) &&
+                                            t.DayNumberId.Equals(t2.DayNumberId) &&
 
                                              t.PairNumber == t2.PairNumber &&
 
@@ -259,7 +259,7 @@ namespace CourseProject.Models
                 }
 
             if (context.Timetable.Where(t => (t.Id != t2.Id) &&
-                                             t.DayNumber.Equals(t2.DayNumber) &&
+                                             t.DayNumberId.Equals(t2.DayNumberId) &&
 
                                              t.PairNumber == t2.PairNumber &&
 

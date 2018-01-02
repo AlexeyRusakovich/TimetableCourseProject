@@ -7,6 +7,13 @@
     <Property Name="Number" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Capacity" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="DayNumbers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="DayNumberName" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
   <EntityType Name="Faculties">
     <Key>
       <PropertyRef Name="ShortName" />
@@ -79,7 +86,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DayNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="DayNumberId" Type="int" Nullable="false" />
     <Property Name="PairNumber" Type="int" Nullable="false" />
     <Property Name="WeekNumber" Type="nvarchar" MaxLength="2" />
     <Property Name="GroupId" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -142,6 +149,18 @@
       </Principal>
       <Dependent Role="Timetable">
         <PropertyRef Name="AudienceNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_DayNumbers">
+    <End Role="DayNumbers" Type="Self.DayNumbers" Multiplicity="1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DayNumbers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="DayNumberId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -237,6 +256,8 @@
   <Function Name="DeleteTiemtable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="GroupsFromXML" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GroupsToXML" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="InsertAudience" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="number" Type="nvarchar" Mode="In" />
     <Parameter Name="capacity" Type="int" Mode="In" />
@@ -276,7 +297,7 @@
     <Parameter Name="ShortPulpitName" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="InsertTimeTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="DayNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="DayNumberId" Type="int" Mode="In" />
     <Parameter Name="PairNumber" Type="int" Mode="In" />
     <Parameter Name="WeekNumber" Type="nvarchar" Mode="In" />
     <Parameter Name="GroupId" Type="nvarchar" Mode="In" />
@@ -320,7 +341,7 @@
   </Function>
   <Function Name="UpdateTiemtable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
-    <Parameter Name="NewDayNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="NewDayNumberId" Type="int" Mode="In" />
     <Parameter Name="NewPairNumber" Type="int" Mode="In" />
     <Parameter Name="NewWeekNumber" Type="nvarchar" Mode="In" />
     <Parameter Name="NewGroupId" Type="nvarchar" Mode="In" />
@@ -332,6 +353,7 @@
   </Function>
   <EntityContainer Name="Хранилище TimetableCourseProjectModelContainer">
     <EntitySet Name="Audience" EntityType="Self.Audience" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DayNumbers" EntityType="Self.DayNumbers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PairsNumber" EntityType="Self.PairsNumber" Schema="dbo" store:Type="Tables" />
@@ -355,6 +377,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Timetable_Audience" Association="Self.FK_Timetable_Audience">
       <End Role="Audience" EntitySet="Audience" />
+      <End Role="Timetable" EntitySet="Timetable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_DayNumbers" Association="Self.FK_Timetable_DayNumbers">
+      <End Role="DayNumbers" EntitySet="DayNumbers" />
       <End Role="Timetable" EntitySet="Timetable" />
     </AssociationSet>
     <AssociationSet Name="FK_Timetable_Groups" Association="Self.FK_Timetable_Groups">

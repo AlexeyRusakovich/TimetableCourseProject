@@ -197,8 +197,18 @@
 
                     </StackPanel>
 
-
-
+                    <Button Height="40"
+                            Style="{StaticResource MenuButtonStyle}" 
+                            Template="{StaticResource MenuButtonTemplate}" 
+                            Click="DisplayViewButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/timetable.png"
+                                       Height="25"/>
+                            <TextBlock Text="Расписание"
+                                    VerticalAlignment="Center"
+                                    Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Button>
 
                 </StackPanel>
 

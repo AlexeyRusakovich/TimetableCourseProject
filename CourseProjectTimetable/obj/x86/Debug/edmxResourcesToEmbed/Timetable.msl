@@ -9,6 +9,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DayNumbers">
+      <EntityTypeMapping TypeName="TimetableCourseProjectModel.DayNumbers">
+        <MappingFragment StoreEntitySet="DayNumbers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DayNumberName" ColumnName="DayNumberName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Faculties">
       <EntityTypeMapping TypeName="TimetableCourseProjectModel.Faculties">
         <MappingFragment StoreEntitySet="Faculties">
@@ -88,7 +96,7 @@
       <EntityTypeMapping TypeName="TimetableCourseProjectModel.Timetable">
         <MappingFragment StoreEntitySet="Timetable">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DayNumber" ColumnName="DayNumber" />
+          <ScalarProperty Name="DayNumberId" ColumnName="DayNumberId" />
           <ScalarProperty Name="PairNumber" ColumnName="PairNumber" />
           <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
           <ScalarProperty Name="GroupId" ColumnName="GroupId" />
@@ -108,6 +116,8 @@
     <FunctionImportMapping FunctionImportName="DeleteSubjects" FunctionName="Хранилище TimetableCourseProjectModel.DeleteSubjects" />
     <FunctionImportMapping FunctionImportName="DeleteTeachers" FunctionName="Хранилище TimetableCourseProjectModel.DeleteTeachers" />
     <FunctionImportMapping FunctionImportName="DeleteTiemtable" FunctionName="Хранилище TimetableCourseProjectModel.DeleteTiemtable" />
+    <FunctionImportMapping FunctionImportName="GroupsFromXML" FunctionName="Хранилище TimetableCourseProjectModel.GroupsFromXML" />
+    <FunctionImportMapping FunctionImportName="GroupsToXML" FunctionName="Хранилище TimetableCourseProjectModel.GroupsToXML" />
     <FunctionImportMapping FunctionImportName="InsertAudience" FunctionName="Хранилище TimetableCourseProjectModel.InsertAudience" />
     <FunctionImportMapping FunctionImportName="InsertFaculties" FunctionName="Хранилище TimetableCourseProjectModel.InsertFaculties" />
     <FunctionImportMapping FunctionImportName="InsertGroups" FunctionName="Хранилище TimetableCourseProjectModel.InsertGroups" />

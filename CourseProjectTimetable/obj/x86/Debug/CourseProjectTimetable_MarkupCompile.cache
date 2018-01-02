@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Учеба\Oracle\TimetableCourseProject\CourseProjectTimetable\obj\x86\Debug\
+C:\Users\alexr\OneDrive\Desktop\TimetableCourseProject\CourseProjectTimetable\obj\x86\Debug\
 CourseProjectTimetable
 none
 false
 DEBUG;TRACE
-D:\Учеба\Oracle\TimetableCourseProject\CourseProjectTimetable\App.xaml
-91139938387
+C:\Users\alexr\OneDrive\Desktop\TimetableCourseProject\CourseProjectTimetable\App.xaml
+101048799966
 2404790153
-45-1526426625
-181898685067
-MainWindow.xaml;View\AudienceView.xaml;View\FacultyView.xaml;View\GroupsView.xaml;View\PulpitView.xaml;View\SpecialityView.xaml;View\SubjectsView.xaml;View\TeachersView.xaml;View\TimetableView.xaml;
+48-1669682887
+251090493093
+MainWindow.xaml;View\AudienceView.xaml;View\DisplayTimetableView.xaml;View\FacultyView.xaml;View\GroupsView.xaml;View\PulpitView.xaml;View\SpecialityView.xaml;View\SubjectsView.xaml;View\TeachersView.xaml;View\TimetableView.xaml;
 
 False
 

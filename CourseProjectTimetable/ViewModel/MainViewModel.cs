@@ -37,7 +37,7 @@ namespace CourseProjectTimetable.ViewModel
             context.PairsNumber.Load();
             context.PairTypes.Load();
 
-            DayNumber = new ObservableCollection<string>(new List<string>() { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" });
+            DayNumber = new ObservableCollection<DayNumbers>((from d in context.DayNumbers select d).ToList());
             Subgroup = new ObservableCollection<string>(new List<string>() { "I", "II", "Нету" });
             WeekNumber = new ObservableCollection<string>(new List<string>() { "I", "II", "По обеим" });
             Corpses = new ObservableCollection<string>(new List<string>() { "1", "2", "3", "3а", "4", "5" });
@@ -84,7 +84,7 @@ namespace CourseProjectTimetable.ViewModel
             context.PairTypes.Load();
         }
 
-        private ObservableCollection<string> dayNumber;
+        private ObservableCollection<DayNumbers> dayNumber;
         private ObservableCollection<PairsNumber> pairNumber;
         private ObservableCollection<string> weekNumber;
         private ObservableCollection<Groups> groups;
@@ -144,7 +144,7 @@ namespace CourseProjectTimetable.ViewModel
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<string> DayNumber
+        public ObservableCollection<DayNumbers> DayNumber
         {
             get { return dayNumber; }
             set

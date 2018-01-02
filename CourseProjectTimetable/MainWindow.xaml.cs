@@ -37,6 +37,9 @@ namespace CourseProjectTimetable
         FacultyView faculty = new FacultyView();
         TimetableView timetable = new TimetableView();
         PulpitView pulpit = new PulpitView();
+        DisplayTimetableView displayView = new DisplayTimetableView();
+
+
 
         private void DatabaseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -96,6 +99,11 @@ namespace CourseProjectTimetable
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void DisplayViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            OutputView.Content = displayView;
         }
     }
 }
